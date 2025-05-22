@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=4 uid="uid://b7k7b0sn6fbjf"]
+
+[ext_resource type="PackedScene" uid="uid://c1xgl6hkoecg5" path="res://Components/interact_component.tscn" id="1_fo6yx"]
+[ext_resource type="Script" uid="uid://bwj7uo8471fqo" path="res://RoomBuilder/EnviromentObjects/campfire.gd" id="1_vw86d"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_i2315"]
+_data = PackedByteArray("AAADAAUAAAABAAAAGAAAADAAAADKAAAAUklGRsIAAABXRUJQVlA4TLYAAAAvF8ALED+gEAAaJofEwj2TyWA6ZBoQmpj+TUTwUYSaAEgYqEcjUvttj/kPAHw/r1fYHkNrEgVuY9tWlfP1FPA/xAwVaAHWgBeg+c1u/1zB84j+K2zbtlF3VlufgTcaM4TeDgmos/pbXiVxCYKdeNKWqX1SZ/ZFldi33aaN9vHwfIr2/ai5Rzs+1IROAodSHqhbFcIIn+DMNIJd8ce6aQ4zJF9eR/BqW0acbhmLKuJ0i5hekVQvAA==")
+size_override = Vector2(24, 48)
+
+[sub_resource type="Animation" id="Animation_fo6yx"]
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vw86d"]
+_data = {
+&"default": SubResource("Animation_fo6yx")
+}
+
+[node name="Campfire" type="Node2D" node_paths=PackedStringArray("interact_component")]
+script = ExtResource("1_vw86d")
+interact_component = NodePath("InteractComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -4)
+texture = SubResource("PortableCompressedTexture2D_i2315")
+hframes = 3
+vframes = 3
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Decorations/campfire_smoke.aseprite",
+"source_uid": 5106647984141852990
+}
+metadata/_aseprite_wizard_source_file_hash_ = "71e78ee67a7415e86c006ec3fbb70314"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vw86d")
+}
+autoplay = "default"
+speed_scale = 0.75
+
+[node name="InteractComponent" parent="." instance=ExtResource("1_fo6yx")]

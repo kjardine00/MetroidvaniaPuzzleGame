@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://ce0x0mu75l02m"
+path="res://.godot/imported/campfire_smoke.aseprite-5a43daf4890858400575d519f8ca805a.res"
+
+[deps]
+
+source_file="res://Assets/Decorations/campfire_smoke.aseprite"
+dest_files=["res://.godot/imported/campfire_smoke.aseprite-5a43daf4890858400575d519f8ca805a.res"]
+
+[params]
+

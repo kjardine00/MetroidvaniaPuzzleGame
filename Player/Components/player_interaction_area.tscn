@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddsu8inkvbht6"]
+
+[ext_resource type="Script" uid="uid://bf031hxp8ju0r" path="res://Player/Components/player_interaction_area.gd" id="1_db7cm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_db7cm"]
+radius = 16.0
+
+[node name="PlayerInteractionArea" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_db7cm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_db7cm")
+debug_color = Color(0.678672, 0.300814, 0.999634, 0.42)

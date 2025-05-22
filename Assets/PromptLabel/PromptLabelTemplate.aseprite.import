@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://oqd3g0wwaj8k"
+path="res://.godot/imported/PromptLabelTemplate.aseprite-02c5f1e3ff1915a696a02f96cfe8d633.res"
+
+[deps]
+
+source_file="res://Assets/PromptLabel/PromptLabelTemplate.aseprite"
+dest_files=["res://.godot/imported/PromptLabelTemplate.aseprite-02c5f1e3ff1915a696a02f96cfe8d633.res"]
+
+[params]
+
