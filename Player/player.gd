@@ -1,11 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
-enum STATE { IDLE, WALK, JUMP, FALL, CLIMB }
-
 @export_category("Connections")
 @export var anim_player: AnimationPlayer
 @export var movement_controller: MovementController
+@export var state_machine: StateMachine
+
+var state: State
 
 var x_dir_input: float = 0
 var jumps_available: int = 1

@@ -258,6 +258,17 @@ autoplay = "idle"
 
 [node name="PlayerInteractionArea" parent="." instance=ExtResource("2_4ntmi")]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "states")]
 script = ExtResource("4_gwnis")
 player = NodePath("..")
+states = [null]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Walk" type="Node" parent="StateMachine"]
+
+[node name="Jump" type="Node" parent="StateMachine"]
+
+[node name="Fall" type="Node" parent="StateMachine"]
+
+[node name="Idle5" type="Node" parent="StateMachine"]
