@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://b5cpnd4mal020"]
+[gd_scene load_steps=20 format=4 uid="uid://b5cpnd4mal020"]
 
 [ext_resource type="Script" uid="uid://dkuxmr83t1hus" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://ddsu8inkvbht6" path="res://Player/Components/player_interaction_area.tscn" id="2_4ntmi"]
 [ext_resource type="Script" uid="uid://q758pyi3hhop" path="res://Player/Components/movement_controller.gd" id="2_btcbx"]
+[ext_resource type="Script" uid="uid://c5hnrm8ishgoe" path="res://Player/StateMachine/state_machine.gd" id="4_gwnis"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_sh265"]
 _data = PackedByteArray("AAADAAUAAAABAAAAYAAAAGAAAACqAgAAUklGRqICAABXRUJQVlA4TJUCAAAvX8AXEJegKJKk5nJ4ngMk8AP/UrARbTCNbasRGXS2qAwKTf9VMBQSdhU0ktR8FdBEFExgGV9YIMx/AAD//8svrRadzDoRplgSJYgOSYECsHBPbbPW1cE2R9vhGC9Blmy7cRs9iB4VwPHT/lc78QGU0+NPRP8huJGkSKpa3gPnQecf8Ke8C+uOk90L3euOc92cpqnuONd95+R1x6nuaGx1x6nuABoQdceJbsBd/t3RBcPZd8XOEcpFFUP/neuBi1ldJYcjsyzPf4b9mj9uFqrr45GAjc9R6pX5er0iASsGTTBrvfKYr+uNhlWDLqwwY+uV6MzzNt8eTzEbLBFU55TMfK9sn3uD2hbhETKozqlyKLeK8ZhnMU5Kxz5oOmc4GTX3A3O1d6TjmLPm/M+wC/Up/XFX9/IpLcaUw4TDbHMkTuX6Kd2/KodlHepUTjhKOU05TDlMOhC7cz0gzvlaTlMOyzlKPRE7RyWnKYdlHbpnKo7YOaJ3NSft6DDlsI5D98pAhzlM/J26pRz/VZZL3VWCGLD1RJcBqN5wl3DJcK9CzKq9Mk0TQ7IDygXkIYZ9T3RvZG/4xHuGrVwREiJuqr3ijQl2QLn6OcMbW0ShJzK90RoSOZQrlKT1Xkv0RKY34KTMsTpKLtJlT2R6RcElg9Auitmkg9cHOD5+Hf+2dlkGOxYOv5Ic6thqJCGvOUjPOOI4oV2H2pBJEw7hdsQ4Bw41IpNWHNHoLQY6drWxY4mkJUdbF8Khfsxk1xWb6/0WY4c9MhqFg9Q5oAYdV7wur9fl8i0u8Tpeeri+g9A5EuvKQI1iwiF3wPxv2QG9cfp1RG+cPSN64/QZ0BufNIbG5uj1xN6B9/v8iyoTe5sulxNnRG/8HS4AAA==")
@@ -256,3 +257,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="PlayerInteractionArea" parent="." instance=ExtResource("2_4ntmi")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("4_gwnis")
+player = NodePath("..")

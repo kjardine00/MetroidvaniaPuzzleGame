@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-enum STATE { MOVE, CLIMB }
+enum STATE { IDLE, WALK, JUMP, FALL, CLIMB }
 
 @export_category("Connections")
 @export var anim_player: AnimationPlayer
@@ -40,4 +40,5 @@ func _on_attack() -> void:
 #endregion
 
 func reset_jumps() -> void:
+	print_debug("Resetting jumps")
 	jumps_available = max_jumps
