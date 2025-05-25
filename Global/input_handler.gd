@@ -15,7 +15,7 @@ signal interact
 signal attack
 #endregion
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass 
 
 func _unhandled_input(event: InputEvent) -> void:

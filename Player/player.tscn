@@ -225,17 +225,18 @@ _data = {
 &"wall_latch": SubResource("Animation_b26j0")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "movement_handler", "interact_area", "state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("anim_player", "movement_handler", "interact_area", "state_machine", "sprite", "wall_detector")]
 collision_layer = 2
 script = ExtResource("1_l8h54")
 anim_player = NodePath("AnimationPlayer")
 movement_handler = NodePath("MovementHandler")
 interact_area = NodePath("PlayerInteractionArea")
 state_machine = NodePath("StateMachine")
+sprite = NodePath("Sprite2D")
+wall_detector = NodePath("WallDetector")
 
-[node name="MovementHandler" type="Node2D" parent="." node_paths=PackedStringArray("p")]
+[node name="MovementHandler" type="Node2D" parent="."]
 script = ExtResource("2_btcbx")
-p = NodePath("..")
 
 [node name="WallDetector" type="RayCast2D" parent="."]
 target_position = Vector2(4, 0)
@@ -277,13 +278,15 @@ script = ExtResource("3_lfmf2")
 [node name="PlayerInteractionArea" parent="." instance=ExtResource("2_4ntmi")]
 visible = false
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("FallState", "IdleState", "JumpState", "RunState")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("FallState", "IdleState", "JumpState", "RunState", "WallJumpState", "WallLatchState")]
 script = ExtResource("4_gwnis")
 debug = true
 FallState = NodePath("Fall")
 IdleState = NodePath("Idle")
 JumpState = NodePath("Jump")
 RunState = NodePath("Run")
+WallJumpState = NodePath("WallJump")
+WallLatchState = NodePath("WallLatch")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("5_dkpta")

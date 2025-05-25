@@ -7,6 +7,7 @@ class_name Player
 @export var interact_area: PlayerInteractionArea
 @export var state_machine: StateMachine
 
+@export var sprite: Sprite2D
 @export var wall_detector: RayCast2D
 
 @export_category("Properties")
@@ -27,24 +28,22 @@ func _ready() -> void:
 	InputHandler.interact.connect(_on_interact)
 	InputHandler.attack.connect(_on_attack)
 
-
 #region Handle Inputs
 func _on_movement_input(input_dir: Vector2) -> void:
 	x_dir_input = input_dir.x
 	## Movement Handler is checking the x_dir_input to determine x_movement
 	## StateMachine is checking the x_dir_input to determine state
 
-	wall_detector.target_position = Vector2(x_dir_input * 4, 0)
+	wall_detector.target_position.x = x_dir_input * 4
+	sprite.flip_h = x_dir_input < 0
 
 func _on_jump() -> void:
-	state_machine.handle_jump_input()
+	state_machine.jump_pressed()
 	#StateMachine -> JumpState.Enter() -> MovementHandler.jump()
-
 
 func _on_jump_released() -> void:
 	state_machine.jump_released()
-	movement_handler.jump_released()
-
+	#StateMachine -> Match JumpState -> MovementHandler.cut_jump()
 
 func _on_attack() -> void:
 	#state_machine.attack()

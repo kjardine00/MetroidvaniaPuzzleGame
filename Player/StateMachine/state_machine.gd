@@ -104,28 +104,26 @@ func check_state_transitions():
 				change_state(FallState)
 
 		WallLatchState:
-			pass
-			# # Priority: Floor Landing > Wall Jump > Lost Wall Contact
-			# if p.is_on_floor():
-			# 	if input_direction == Vector2.ZERO:
-			# 		change_state(IDLING)
-			# 	else:
-			# 		change_state(WALKING)
-			# elif !p.is_on_wall() || !p.wall_detector.is_colliding():
-			# 	change_state(FALLING)
+			# Priority: Floor Landing > Wall Jump > Lost Wall Contact
+			if p.is_on_floor():
+				if p.x_dir_input == 0:
+					change_state(IdleState)
+				else:
+					change_state(RunState)
+			elif !p.is_on_wall() || !p.wall_detector.is_colliding():
+				change_state(FallState)
 
 		WallJumpState:
-			pass
-			# # Priority: Wall Slide > Floor Landing > Falling
-			# if p.is_on_wall() && p.wall_detector.is_colliding() and p.head_ability == HeadEquip.AbilityType.WALL_JUMP:
-			# 	change_state(WALL_SLIDING)
-			# elif p.is_on_floor():
-			# 	if input_direction == Vector2.ZERO:
-			# 		change_state(IDLING)
-			# 	else:
-			# 		change_state(WALKING)
-			# elif p.velocity.y >= 0:  # At peak of wall jump or moving down
-			# 	change_state(FALLING)
+			# Priority: Wall Slide > Floor Landing > Falling
+			if p.is_on_wall() && p.wall_detector.is_colliding():
+				change_state(WallLatchState)
+			elif p.is_on_floor():
+				if p.x_dir_input == 0:
+					change_state(IdleState)
+				else:
+					change_state(RunState)
+			elif p.velocity.y >= 0:  # At peak of wall jump or moving down
+				change_state(FallState)
 
 		DashState:
 			pass
@@ -141,30 +139,30 @@ func check_state_transitions():
 			# 	change_state(WALL_SLIDING)
 #endregion
 
-var jump_pressed: bool = false
-func handle_jump_input():
-	jump_pressed = true
-	buffer_jump()
+var jump_is_pressed: bool = false
+func jump_pressed():
+	jump_is_pressed = true
+	jump_is_buffered = true
+	jump_buffer_timer = jump_buffer_time
+
 	if p.jumps_available > 0:
 		match state:
 			WallLatchState:
-				pass
 				change_state(WallJumpState)
 			_:
-				
 				change_state(JumpState)
 		
 	await get_tree().physics_frame
-	jump_pressed = false
+	jump_is_pressed = false
 
-func handle_jump_released():
+func jump_released():
 	match state:
 		JumpState:
 			if p.velocity.y < 0:
-				p.movement_controller.cut_jump()
+				p.movement_handler.cut_jump()
 		WallJumpState:
 			if p.velocity.y < 0:
-				p.movement_controller.cut_jump()
+				p.movement_handler.cut_jump()
 
 # func handle_ability_input(ability_type : BodyEquip.AbilityType, direction : Vector2):
 # 	match ability_type:
@@ -176,8 +174,3 @@ func handle_jump_released():
 # 			DASHING.last_direction = direction
 # 			change_state(DASHING)
 #endregion
-
-func buffer_jump():
-	jump_is_buffered = true
-	jump_is_buffered = true
-	jump_buffer_timer = jump_buffer_time
