@@ -1,193 +1,183 @@
 extends Node
-class_name State_Machine
+class_name StateMachine
 
-@export var player_character: Player
+@export var debug: bool = false
+
+var p: Player
 
 @export_category("Connect States")
-@export var IDLING : State
-@export var WALKING : State
-@export var JUMPING : State
-@export var FALLING : State
-@export var WALL_JUMPING : State
-@export var WALL_SLIDING : State
-@export var ROLLING : State
-@export var DASHING : State
-@export var CLIMB : State
+@export var AttackState: State
+@export var ClimbState: State
+@export var DashState: State
+@export var DieState: State
+@export var FallState: State
+@export var HurtState: State
+@export var IdleState: State
+@export var JumpState: State
+@export var RunState: State
+@export var WallJumpState: State
+@export var WallLatchState: State
 
-var current_state: State
+var state: State
 var prev_state: State
-
-var input_direction : Vector2 ## This is the input direction at time of input not to be confused with the last input direction
-var input_jump: bool
-
-@onready var state_label: Label = $"../CurrentState"
 
 @export_category("Jump Buffer Settings")
 @export var jump_buffer_time: float = 0.1  # Time window for jump buffer in seconds
-@export var wall_jump_buffer_time: float = 0.1  # Time window for wall jump buffer in seconds
-
 var jump_buffer_timer: float = 0.0
 var jump_is_buffered: bool = false
-var wall_jump_buffer_timer: float = 0.0
-var wall_jump_is_buffered: bool = false
 
 #region Core State Machine
 func _ready() -> void:
-	for state in self.get_children():
-		if state is State:
-			state.player = player_character
-			state.state_machine = self
+	p = get_parent() as Player
+
+	for s in self.get_children():
+		if s is State:
+			s.player = p
+			s.sm = self
 			
-	current_state = IDLING
-	prev_state = IDLING
-	state_label.text = str(current_state)
+	state = IdleState
+	prev_state = IdleState
+	if debug:
+		print_debug("[StateMachine] Current State: " + state.name)
 
 func _physics_process(_delta: float):
 	check_state_transitions()
 	
-	# Update jump buffer timers
+	#region Jump Buffer
 	if jump_is_buffered:
 		jump_buffer_timer -= _delta
 		if jump_buffer_timer <= 0:
 			jump_is_buffered = false
-			
-	if wall_jump_is_buffered:
-		wall_jump_buffer_timer -= _delta
-		if wall_jump_buffer_timer <= 0:
-			wall_jump_is_buffered = false
+	#endregion
 
 func change_state(next_state):
 	if next_state:
-		# print("From: " + prev_state.name + " To: " + current_state.name)
-		prev_state = current_state
-		current_state = next_state
+		prev_state = state
+		state = next_state
 		prev_state.exit_state()
-		current_state.enter_state()
-		state_label.text = str(current_state)
-#endregion
+		state.enter_state()
+		
+		if debug: 
+			print_debug("[StateMachine] Transitioning from " + prev_state.name + " to " + state.name)
 
-#region State Transitions
+## These are the static tranistions that are not reliant on input from the player
 func check_state_transitions():
-	match current_state:
-		IDLING:
+	match state:
+		IdleState:
 			# Priority: Falling > Walking
-			if !player_character.is_on_floor():
-				change_state(FALLING)
-			elif input_direction.x != 0:  # Only check horizontal input
-				change_state(WALKING)
+			if !p.is_on_floor():
+				change_state(FallState)
+			elif p.x_dir_input != 0:  # Only check horizontal input
+				change_state(RunState)
 		
-		WALKING:
+		RunState:
 			# Priority: Falling > Idle
-			if !player_character.is_on_floor():
-				change_state(FALLING)
-			elif input_direction.x == 0:  # Only check horizontal input
-				change_state(IDLING)
+			if !p.is_on_floor():
+				change_state(FallState)
+			elif p.x_dir_input == 0:  # Only check horizontal input
+				change_state(IdleState)
 				
-		FALLING:
+		FallState:
 			# Priority: Floor Landing > Wall Slide
-			if player_character.is_on_floor():
+			if p.is_on_floor():
 				if jump_is_buffered:
-					change_state(JUMPING)
-				elif input_direction == Vector2.ZERO:
-					change_state(IDLING)
+					change_state(JumpState)
+				elif p.x_dir_input == 0:
+					change_state(IdleState)
 				else:
-					change_state(WALKING)
-			elif player_character.is_on_wall() and player_character.wall_detector.is_colliding() and player_character.head_ability == HeadEquip.AbilityType.WALL_JUMP:
-				change_state(WALL_SLIDING)
-			elif jump_is_buffered && player_character.movement_handler.coyote_active:
-				change_state(JUMPING)
+					change_state(RunState)
+			elif p.is_on_wall() and p.wall_detector.is_colliding():
+				change_state(WallLatchState)
+			elif jump_is_buffered && p.movement_handler.coyote_active:
+				change_state(JumpState)
 
-		JUMPING:
+		JumpState:
 			# Priority: Wall Slide > Floor Landing > Falling
-			if player_character.is_on_wall() && player_character.wall_detector.is_colliding() and player_character.head_ability == HeadEquip.AbilityType.WALL_JUMP:
-				change_state(WALL_SLIDING)
-			elif player_character.is_on_floor():
-				if input_direction == Vector2.ZERO:
-					change_state(IDLING)
+			if p.is_on_wall() && p.wall_detector.is_colliding():
+				change_state(WallLatchState)
+			elif p.is_on_floor():
+				if p.x_dir_input == 0:
+					change_state(IdleState)
 				else:
-					change_state(WALKING)
-			elif player_character.velocity.y >= 0:  # At peak of jump or moving down
-				change_state(FALLING)
+					change_state(RunState)
+			elif p.velocity.y >= 0:  # At peak of jump or moving down
+				change_state(FallState)
 
-		WALL_SLIDING:
-			# Priority: Floor Landing > Wall Jump > Lost Wall Contact
-			if player_character.is_on_floor():
-				if input_direction == Vector2.ZERO:
-					change_state(IDLING)
-				else:
-					change_state(WALKING)
-			elif input_jump or wall_jump_is_buffered:  # Modified to check for buffered wall jump
-				change_state(WALL_JUMPING)
-			elif !player_character.is_on_wall() || !player_character.wall_detector.is_colliding():
-				change_state(FALLING)
+		WallLatchState:
+			pass
+			# # Priority: Floor Landing > Wall Jump > Lost Wall Contact
+			# if p.is_on_floor():
+			# 	if input_direction == Vector2.ZERO:
+			# 		change_state(IDLING)
+			# 	else:
+			# 		change_state(WALKING)
+			# elif !p.is_on_wall() || !p.wall_detector.is_colliding():
+			# 	change_state(FALLING)
 
-		WALL_JUMPING:
-			# Priority: Wall Slide > Floor Landing > Falling
-			if player_character.is_on_wall() && player_character.wall_detector.is_colliding() and player_character.head_ability == HeadEquip.AbilityType.WALL_JUMP:
-				change_state(WALL_SLIDING)
-			elif player_character.is_on_floor():
-				if input_direction == Vector2.ZERO:
-					change_state(IDLING)
-				else:
-					change_state(WALKING)
-			elif player_character.velocity.y >= 0:  # At peak of wall jump or moving down
-				change_state(FALLING)
+		WallJumpState:
+			pass
+			# # Priority: Wall Slide > Floor Landing > Falling
+			# if p.is_on_wall() && p.wall_detector.is_colliding() and p.head_ability == HeadEquip.AbilityType.WALL_JUMP:
+			# 	change_state(WALL_SLIDING)
+			# elif p.is_on_floor():
+			# 	if input_direction == Vector2.ZERO:
+			# 		change_state(IDLING)
+			# 	else:
+			# 		change_state(WALKING)
+			# elif p.velocity.y >= 0:  # At peak of wall jump or moving down
+			# 	change_state(FALLING)
 
-		ROLLING:
-			# Priority: Floor Landing > Wall Slide > Falling
-			if current_state.roll_timer <= 0:
-			# Roll is complete, transition to appropriate state
-				if !player_character.is_on_floor():
-					change_state(FALLING)
-				elif input_direction == Vector2.ZERO:
-					change_state(IDLING)
-				else:
-					change_state(WALKING)
-
-		DASHING:
+		DashState:
+			pass
 			# Priority: Floor Landing > Wall Slide > Falling | Jumping is handled in state.gd
-			if current_state.dash_timer <= 0:
-				if !player_character.is_on_floor():
-					change_state(FALLING)
-				elif input_direction == Vector2.ZERO:
-					change_state(IDLING)
-				else:
-					change_state(WALKING)
-			elif player_character.is_on_wall() && player_character.wall_detector.is_colliding() and player_character.head_ability == HeadEquip.AbilityType.WALL_JUMP:
-				change_state(WALL_SLIDING)
+			# if state.dash_timer <= 0:
+			# 	if !p.is_on_floor():
+			# 		change_state(FALLING)
+			# 	elif input_direction == Vector2.ZERO:
+			# 		change_state(IDLING)
+			# 	else:
+			# 		change_state(WALKING)
+			# elif p.is_on_wall() && p.wall_detector.is_colliding() and p.head_ability == HeadEquip.AbilityType.WALL_JUMP:
+			# 	change_state(WALL_SLIDING)
 #endregion
 
-#region Handle Inputs
-func handle_movement_input(direction):
-	input_direction = direction
-	current_state.handle_movement_input(input_direction)
-		
+var jump_pressed: bool = false
 func handle_jump_input():
-	input_jump = true
-	jump_is_buffered = true
-	jump_buffer_timer = jump_buffer_time
-	wall_jump_is_buffered = true
-	wall_jump_buffer_timer = wall_jump_buffer_time
-	current_state.handle_jump_input()
+	jump_pressed = true
+	buffer_jump()
+	if p.jumps_available > 0:
+		match state:
+			WallLatchState:
+				pass
+				change_state(WallJumpState)
+			_:
+				
+				change_state(JumpState)
+		
 	await get_tree().physics_frame
-	input_jump = false
+	jump_pressed = false
 
 func handle_jump_released():
-	match current_state:
-		JUMPING:
-			if player_character.velocity.y < 0:
-				player_character.movement_handler.cut_jump()
-		WALL_JUMPING:
-			if player_character.velocity.y < 0:
-				player_character.movement_handler.cut_jump()
+	match state:
+		JumpState:
+			if p.velocity.y < 0:
+				p.movement_controller.cut_jump()
+		WallJumpState:
+			if p.velocity.y < 0:
+				p.movement_controller.cut_jump()
 
-func handle_ability_input(ability_type : BodyEquip.AbilityType, direction : Vector2):
-	match ability_type:
-		BodyEquip.AbilityType.ROLL:
-			if player_character.is_on_floor():
-				ROLLING.last_direction = direction
-				change_state(ROLLING)
-		BodyEquip.AbilityType.DASH:
-			DASHING.last_direction = direction
-			change_state(DASHING)
+# func handle_ability_input(ability_type : BodyEquip.AbilityType, direction : Vector2):
+# 	match ability_type:
+# 		BodyEquip.AbilityType.ROLL:
+# 			if p.is_on_floor():
+# 				ROLLING.last_direction = direction
+# 				change_state(ROLLING)
+# 		BodyEquip.AbilityType.DASH:
+# 			DASHING.last_direction = direction
+# 			change_state(DASHING)
 #endregion
+
+func buffer_jump():
+	jump_is_buffered = true
+	jump_is_buffered = true
+	jump_buffer_timer = jump_buffer_time

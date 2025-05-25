@@ -3,14 +3,20 @@ class_name Player
 
 @export_category("Connections")
 @export var anim_player: AnimationPlayer
-@export var movement_controller: MovementController
+@export var movement_handler: MovementHandler
+@export var interact_area: PlayerInteractionArea
 @export var state_machine: StateMachine
+
+@export var wall_detector: RayCast2D
+
+@export_category("Properties")
+@export var max_jumps: int = 1
 
 var state: State
 
 var x_dir_input: float = 0
 var jumps_available: int = 1
-var max_jumps: int = 1
+
 
 # @export var interact_area: 
 func _ready() -> void:
@@ -25,21 +31,28 @@ func _ready() -> void:
 #region Handle Inputs
 func _on_movement_input(input_dir: Vector2) -> void:
 	x_dir_input = input_dir.x
+	## Movement Handler is checking the x_dir_input to determine x_movement
+	## StateMachine is checking the x_dir_input to determine state
+
+	wall_detector.target_position = Vector2(x_dir_input * 4, 0)
 
 func _on_jump() -> void:
-	movement_controller.jump()
+	state_machine.handle_jump_input()
+	#StateMachine -> JumpState.Enter() -> MovementHandler.jump()
+
 
 func _on_jump_released() -> void:
-	movement_controller.jump_released()
+	state_machine.jump_released()
+	movement_handler.jump_released()
+
+
+func _on_attack() -> void:
+	#state_machine.attack()
+	pass
 
 func _on_interact() -> void:
 	pass
-
-func _on_attack() -> void:
-	pass
-
 #endregion
 
 func reset_jumps() -> void:
-	print_debug("Resetting jumps")
 	jumps_available = max_jumps

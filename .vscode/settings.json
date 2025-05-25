@@ -1,3 +1,7 @@
 {
-    "godotTools.editorPath.godot4": "/Users/kyle/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app"
+    "godotTools.editorPath.godot4": "/Users/kyle/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app",
+
+    "files.exclude": {
+        "**/*.gd.uid": true
+    }
 }
