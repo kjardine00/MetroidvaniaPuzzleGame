@@ -239,6 +239,7 @@ wall_detector = NodePath("WallDetector")
 script = ExtResource("2_btcbx")
 
 [node name="WallDetector" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
 target_position = Vector2(4, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

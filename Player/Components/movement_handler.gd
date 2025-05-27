@@ -5,7 +5,7 @@ var p: Player
 
 @export_category("General Properties")
 ## Speed in tiles per second
-@export var run_speed: float = 4
+@export var run_speed: float = 8
 @onready var move_speed: float = run_speed * Global.TILE_SIZE # Will be calculated based on run_speed
 
 #region Jump Props
@@ -94,8 +94,6 @@ func get_gravity() -> float:
 
 func get_horizontal_move_input() -> float:
 	match p.state_machine.state:
-		p.state_machine.IdleState:
-			return 0
 		p.state_machine.RunState:
 			return p.x_dir_input
 		p.state_machine.FallState:
@@ -103,7 +101,7 @@ func get_horizontal_move_input() -> float:
 		p.state_machine.JumpState:
 			return p.x_dir_input
 		p.state_machine.WallJumpState:
-			return wall_jump_push_velociy * -p.x_dir_input
+			return p.x_dir_input
 		_:
 			return 0
 ## pass a value if you want to modify the jump amount from default
