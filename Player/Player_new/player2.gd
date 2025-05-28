@@ -1,21 +1,25 @@
 extends CharacterBody2D
 
-enum STATE { MOVE, CLIMB }
+enum STATE { MOVE, CLIMB, ON_WALL }
 
 @export var anchor: Node2D
 @export var anim_player: AnimationPlayer
+@export var wall_raycast_upper: RayCast2D
+@export var wall_raycast_lower: RayCast2D
+@export var hurtbox: Hurtbox
 
 @export_category("Movement Properties")
 @export var max_speed := 75
-@export var acceleration := 1000
-@export var air_acceleration := 1500
-@export var friction := 1000
+@export var acceleration := 10000
+@export var air_acceleration := 2000
+@export var friction := 10000
 @export var air_friction := 500
 
 #region Gravity Calculations
 @export var jump_height := 3.0
 @export var jump_time_to_peak := 0.5
 @export var jump_time_to_fall := 0.4
+@export var wall_cut := 0.3
 
 var coyote_time := 0.0
 
@@ -30,6 +34,11 @@ var pause_anim: bool = false
 func _ready() -> void:
 	anim_player.animation_finished.connect(func(anim_name: String):
 		if anim_name == "attack": pause_anim = false
+		elif anim_name == "wall_jump": pause_anim = false
+	)
+
+	hurtbox.hurt.connect(func(other_hitbox: Hitbox):
+		print_debug("[Player] Hurt by ", other_hitbox)
 	)
 
 func _physics_process(delta: float) -> void:
@@ -40,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			var x_input = Input.get_axis("move_left", "move_right")
 
 			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
-				velocity.y = jump_vel
+				_jump()
 
 			_apply_gravity(delta)
 
@@ -54,16 +63,48 @@ func _physics_process(delta: float) -> void:
 				_accelerate_h(x_input, delta)
 				anchor.scale.x = sign(x_input)
 
-				var was_on_floor = is_on_floor()
-				move_and_slide()
+			var was_on_floor = is_on_floor()
 
-				if was_on_floor and not is_on_floor() and velocity.y >= 0:
+			move_and_slide()
+
+			if was_on_floor and not is_on_floor() and velocity.y >= 0:
 					coyote_time = 0.2
 
-		STATE.CLIMB:
-			pass
+			if _check_wall_latch():
+				velocity.y = 0
+				state = STATE.ON_WALL
+			
+		STATE.ON_WALL:
+			var wall_normal = get_wall_normal()			
+			var x_input = Input.get_axis("move_left", "move_right")
 
-	_animations()
+			_apply_wall_gravity(delta)
+
+			move_and_slide()
+
+			var request_detach: bool = (sign(x_input) == wall_normal.x)
+
+			if Input.is_action_just_pressed("jump"):
+				velocity.x = wall_normal.x * max_speed
+				anchor.scale.x = sign(velocity.x)
+				_jump()
+				anim_player.play("wall_jump")
+				state = STATE.MOVE
+
+			if not _check_wall_latch() or request_detach: 
+				state = STATE.MOVE
+
+		STATE.CLIMB:
+			var y_input = Input.get_axis("move_up", "move_down")
+			velocity.y = y_input * max_speed * 0.8
+
+			# Check if the player is no longer on climable surface / or jump is pressed tranisisiton to different state
+
+	_animations(state)
+
+#region Movement Functions
+func _jump():
+	velocity.y = jump_vel
 
 func _accelerate_h(h_dir: float, delta: float) -> void:
 	var acceleration_amount = acceleration
@@ -85,18 +126,41 @@ func _apply_gravity(delta: float) -> void:
 		else:
 			velocity.y += down_gravity * delta
 
-func _animations():
-	if pause_anim: return
-	
-	# Air animations
-	if not is_on_floor():
-		if velocity.y < 0:
-			anim_player.play("jump")
-		else:
-			anim_player.play("fall")
-	# Ground animations
-	else:
-		if velocity.x:
-			anim_player.play("run")
-		else: 
-			anim_player.play("idle")
+func _apply_wall_gravity(delta: float) -> void:
+	velocity.y += down_gravity * wall_cut * delta 
+
+#endregion
+
+func _check_wall_latch() -> bool:
+	return (
+		wall_raycast_upper.is_colliding() and
+		wall_raycast_lower.is_colliding() and
+		not is_on_floor() and 
+		not anim_player.current_animation == "attack"
+	)
+
+func _animations(state: STATE = STATE.MOVE):
+	match state:
+		STATE.MOVE:
+			if pause_anim: return
+			# inAir animations
+			if not is_on_floor():
+				if velocity.y < 0:
+					anim_player.play("jump")
+				else:
+					anim_player.play("fall")
+			# onGround animations
+			else:
+				if velocity.x:
+					anim_player.play("run")
+				else: 
+					anim_player.play("idle")
+		
+		STATE.ON_WALL:
+			anim_player.play("wall_latch")
+
+		STATE.CLIMB:
+			if velocity.y == 0:
+				anim_player.pause()
+			else: 
+				anim_player.play("climb")

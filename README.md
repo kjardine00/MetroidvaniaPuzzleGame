@@ -1,4 +1,13 @@
 # MetroidvaniaPuzzleGame
 
 ================ TODO ================
-Player double jumps for some reason, I think this is fixed by a state machine
+Remove players previous code
+Tweak the wall jump physics to be better
+Implement LadderClimbing
+
+
+
+Player Character Features
+- Climb Ladders
+- Interact with stuff
+- 
