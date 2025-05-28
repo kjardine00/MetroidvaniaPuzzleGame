@@ -4,14 +4,6 @@
 [ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/hitbox.gd" id="2_j3dwa"]
 [ext_resource type="Script" uid="uid://c64hk3run8l8b" path="res://Components/hurtbox.gd" id="3_i70iu"]
 
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_lkh77"]
-_data = PackedByteArray("AAADAAUAAAABAAAAYAAAAGAAAACqAgAAUklGRqICAABXRUJQVlA4TJUCAAAvX8AXEJegKJKk5nJ4ngMk8AP/UrARbTCNbasRGXS2qAwKTf9VMBQSdhU0ktR8FdBEFExgGV9YIMx/AAD//8svrRadzDoRplgSJYgOSYECsHBPbbPW1cE2R9vhGC9Blmy7cRs9iB4VwPHT/lc78QGU0+NPRP8huJGkSKpa3gPnQecf8Ke8C+uOk90L3euOc92cpqnuONd95+R1x6nuaGx1x6nuABoQdceJbsBd/t3RBcPZd8XOEcpFFUP/neuBi1ldJYcjsyzPf4b9mj9uFqrr45GAjc9R6pX5er0iASsGTTBrvfKYr+uNhlWDLqwwY+uV6MzzNt8eTzEbLBFU55TMfK9sn3uD2hbhETKozqlyKLeK8ZhnMU5Kxz5oOmc4GTX3A3O1d6TjmLPm/M+wC/Up/XFX9/IpLcaUw4TDbHMkTuX6Kd2/KodlHepUTjhKOU05TDlMOhC7cz0gzvlaTlMOyzlKPRE7RyWnKYdlHbpnKo7YOaJ3NSft6DDlsI5D98pAhzlM/J26pRz/VZZL3VWCGLD1RJcBqN5wl3DJcK9CzKq9Mk0TQ7IDygXkIYZ9T3RvZG/4xHuGrVwREiJuqr3ijQl2QLn6OcMbW0ShJzK90RoSOZQrlKT1Xkv0RKY34KTMsTpKLtJlT2R6RcElg9Auitmkg9cHOD5+Hf+2dlkGOxYOv5Ic6thqJCGvOUjPOOI4oV2H2pBJEw7hdsQ4Bw41IpNWHNHoLQY6drWxY4mkJUdbF8Khfsxk1xWb6/0WY4c9MhqFg9Q5oAYdV7wur9fl8i0u8Tpeeri+g9A5EuvKQI1iwiF3wPxv2QG9cfp1RG+cPSN64/QZ0BufNIbG5uj1xN6B9/v8iyoTe5sulxNnRG/8HS4AAA==")
-size_override = Vector2(96, 96)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkh77"]
-radius = 2.0
-height = 8.0
-
 [sub_resource type="Animation" id="Animation_g1rub"]
 length = 0.6
 tracks/0/type = "value"
@@ -29,14 +21,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
+tracks/1/path = NodePath("Anchor/Hitbox/CollisionPolygon2D:polygon")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [PackedVector2Array(0, -1, 4, -1, 2, -3, 0, -3), PackedVector2Array(0, -1, 8, -1, 8, -2, 7, -3, 0, -3), PackedVector2Array(2, -1, 8, -1, 8, -2, 7, -3, 1, -3), PackedVector2Array(4, -1, 8, -1, 8, -2, 7, -3, 3, -3), PackedVector2Array(5, -1, 8, -1, 8, -2, 7, -3, 4, -3)]
+"values": [PackedVector2Array(), PackedVector2Array(0, -1, 4, -1, 2, -3, 0, -3), PackedVector2Array(0, -1, 8, -1, 8, -2, 7, -3, 0, -3), PackedVector2Array(2, -1, 8, -1, 8, -2, 7, -3, 1, -3), PackedVector2Array(4, -1, 8, -1, 8, -2, 7, -3, 3, -3), PackedVector2Array(5, -1, 8, -1, 8, -2, 7, -3, 4, -3), PackedVector2Array()]
 }
 
 [sub_resource type="Animation" id="Animation_if1qa"]
@@ -212,6 +204,18 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_i70iu"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Hitbox/CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array()]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_porx7"]
 _data = {
@@ -230,6 +234,14 @@ _data = {
 &"wall_latch": SubResource("Animation_66x8i")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lkh77"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_lkh77"]
+_data = PackedByteArray("AAADAAUAAAABAAAAYAAAAGAAAACqAgAAUklGRqICAABXRUJQVlA4TJUCAAAvX8AXEJegKJKk5nJ4ngMk8AP/UrARbTCNbasRGXS2qAwKTf9VMBQSdhU0ktR8FdBEFExgGV9YIMx/AAD//8svrRadzDoRplgSJYgOSYECsHBPbbPW1cE2R9vhGC9Blmy7cRs9iB4VwPHT/lc78QGU0+NPRP8huJGkSKpa3gPnQecf8Ke8C+uOk90L3euOc92cpqnuONd95+R1x6nuaGx1x6nuABoQdceJbsBd/t3RBcPZd8XOEcpFFUP/neuBi1ldJYcjsyzPf4b9mj9uFqrr45GAjc9R6pX5er0iASsGTTBrvfKYr+uNhlWDLqwwY+uV6MzzNt8eTzEbLBFU55TMfK9sn3uD2hbhETKozqlyKLeK8ZhnMU5Kxz5oOmc4GTX3A3O1d6TjmLPm/M+wC/Up/XFX9/IpLcaUw4TDbHMkTuX6Kd2/KodlHepUTjhKOU05TDlMOhC7cz0gzvlaTlMOyzlKPRE7RyWnKYdlHbpnKo7YOaJ3NSft6DDlsI5D98pAhzlM/J26pRz/VZZL3VWCGLD1RJcBqN5wl3DJcK9CzKq9Mk0TQ7IDygXkIYZ9T3RvZG/4xHuGrVwREiJuqr3ijQl2QLn6OcMbW0ShJzK90RoSOZQrlKT1Xkv0RKY34KTMsTpKLtJlT2R6RcElg9Auitmkg9cHOD5+Hf+2dlkGOxYOv5Ic6thqJCGvOUjPOOI4oV2H2pBJEw7hdsQ4Bw41IpNWHNHoLQY6drWxY4mkJUdbF8Khfsxk1xWb6/0WY4c9MhqFg9Q5oAYdV7wur9fl8i0u8Tpeeri+g9A5EuvKQI1iwiF3wPxv2QG9cfp1RG+cPSN64/QZ0BufNIbG5uj1xN6B9/v8iyoTe5sulxNnRG/8HS4AAA==")
+size_override = Vector2(96, 96)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i70iu"]
 radius = 1.0
 height = 8.0
@@ -241,7 +253,16 @@ anchor = NodePath("Anchor")
 anim_player = NodePath("AnimationPlayer")
 wall_raycast_upper = NodePath("Anchor/RayCast2DUpper")
 wall_raycast_lower = NodePath("Anchor/RayCast2DLower")
-hurtbox = NodePath("Hurtbox")
+hurtbox = NodePath("Anchor/Hurtbox")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_porx7")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_lkh77")
 
 [node name="Anchor" type="Node2D" parent="."]
 position = Vector2(0, -4)
@@ -280,32 +301,23 @@ visible = false
 position = Vector2(1, 3)
 target_position = Vector2(2, 0)
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_lkh77")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_porx7")
-}
-
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="Anchor"]
+position = Vector2(0, 4)
 collision_layer = 0
-collision_mask = 12
+collision_mask = 16
 script = ExtResource("2_j3dwa")
 metadata/_custom_type_script = "uid://dlcmveqh1q4d6"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
-polygon = PackedVector2Array(5, -1, 8, -1, 8, -2, 7, -3, 4, -3)
-disabled = true
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Anchor/Hitbox"]
 
-[node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 2
+[node name="Hurtbox" type="Area2D" parent="Anchor"]
+position = Vector2(0, 4)
+collision_layer = 8
 collision_mask = 0
 script = ExtResource("3_i70iu")
 metadata/_custom_type_script = "uid://c64hk3run8l8b"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor/Hurtbox"]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_i70iu")
 debug_color = Color(0.896585, 0.000198106, 0.774644, 0.42)

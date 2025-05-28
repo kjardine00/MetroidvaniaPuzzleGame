@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://du0acguelibr3"]
+
+[ext_resource type="Shader" uid="uid://bmvbdpnu27igu" path="res://RoomBuilder/Enemies/fx_material.gdshader" id="1_xicon"]
+
+[resource]
+shader = ExtResource("1_xicon")
+shader_parameter/flash_enabled = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)

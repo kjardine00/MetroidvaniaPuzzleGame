@@ -28,8 +28,8 @@ tile_map_data = PackedByteArray("AAABAAsAAAAGAAIAAAABAAoAAAAGAAIAAAABAAkAAAAGAAI
 tile_set = ExtResource("2_2q2q1")
 
 [node name="Player2" parent="." instance=ExtResource("4_lkh77")]
-position = Vector2(36, 94)
+position = Vector2(34, 104)
 
 [node name="Enemy" parent="." instance=ExtResource("4_q8qo0")]
-position = Vector2(105, 104)
+position = Vector2(61, 104)
 scale = Vector2(-1, 1)
