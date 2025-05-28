@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdcww254602ik"]
+
+[ext_resource type="Texture2D" uid="uid://cp6uyncct6ytx" path="res://Assets/Particles/CircleParticle-16.png" id="1_bd6vl"]
+[ext_resource type="Script" uid="uid://mycq10rxc3dq" path="res://particle_burst.gd" id="2_671xx"]
+
+[sub_resource type="Curve" id="Curve_6r0tt"]
+_data = [Vector2(0, 0.600272), 0.0, 0.0, 0, 0, Vector2(1, 0.287211), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_em8ii"]
+curve = SubResource("Curve_6r0tt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8hawx"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_em8ii")
+
+[node name="SplatterParticleBurst" type="GPUParticles2D"]
+amount = 3
+texture = ExtResource("1_bd6vl")
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_8hawx")
+script = ExtResource("2_671xx")
+metadata/_custom_type_script = "uid://mycq10rxc3dq"

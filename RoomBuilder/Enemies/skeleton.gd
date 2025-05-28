@@ -1,5 +1,7 @@
 extends Node2D
 
+const PARTICLE_BURST_EFFECT: PackedScene = preload("res://splatter_particle_burst.tscn")
+
 @export var sprite: Sprite2D
 @export var hurtbox: Hurtbox
 @export var fx_anim_player: AnimationPlayer
@@ -15,6 +17,9 @@ extends Node2D
 func _ready() -> void:
 
 	hurtbox.hurt.connect(func(other_hitbox: Hitbox):
+		var spark_particle = PARTICLE_BURST_EFFECT.instantiate()
+		get_tree().current_scene.add_child(spark_particle)
+		spark_particle.global_position = sprite.global_position
 		stats.health -= other_hitbox.damage
 		fx_anim_player.play("hit_flash")
 		shaker.shake(2.0, 0.2)

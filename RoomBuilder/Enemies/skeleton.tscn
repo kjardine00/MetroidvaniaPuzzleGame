@@ -8,7 +8,7 @@
 
 [sub_resource type="Resource" id="Resource_odsce"]
 script = ExtResource("2_ggwlw")
-health = 5.0
+health = 50.0
 metadata/_custom_type_script = "uid://dtvpenjhn13ue"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8y8m"]
