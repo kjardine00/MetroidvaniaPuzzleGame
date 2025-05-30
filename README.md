@@ -1,5 +1,7 @@
 # MetroidvaniaPuzzleGame
 
+STOP BEING SUPER VERBOSE FOR SAKE OF OPTIMIZATION, IF IT IS CODE IT REALLY DOESN'T MATTER
+
 ================ TODO ================
 Remove players previous code
 Tweak the wall jump physics to be better
@@ -7,6 +9,9 @@ Implement LadderClimbing
 Right now the player hit box collision colides with the enemy 4-5 times on 1 attack 
 - Maybe I should remove the hit boxes from all but 1 frame
 - Give the enemy hurtbox some sort of duplicate attack detection to prevent the hurt() signal call
+
+BIG TODO:
+REORGANIZE PROJECT File structure and pieces
 
 
 
