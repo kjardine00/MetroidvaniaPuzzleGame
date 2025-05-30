@@ -1,12 +1,20 @@
 extends CharacterBody2D
 
-enum STATE { MOVE, CLIMB, ON_WALL }
+enum STATE { MOVE, CLIMB, ON_WALL, HURT }
+@export var state : STATE = STATE.MOVE
 
 @export var anchor: Node2D
+@export var sprite: Sprite2D
 @export var anim_player: AnimationPlayer
 @export var wall_raycast_upper: RayCast2D
 @export var wall_raycast_lower: RayCast2D
 @export var hurtbox: Hurtbox
+
+@export var stats: Stats:
+	set(value):
+		stats = value
+		if value is not Stats: return
+		stats = stats.duplicate()
 
 @export_category("Movement Properties")
 @export var max_speed := 75
@@ -28,17 +36,29 @@ var coyote_time := 0.0
 @onready var down_gravity := ((-2.0 * (jump_height * Global.TILE_SIZE)) / (jump_time_to_fall * jump_time_to_fall)) * -1.0
 #endregion
 
-var state : STATE = STATE.MOVE
 var pause_anim: bool = false
+
+@onready var shaker := Shaker.new(sprite)
 
 func _ready() -> void:
 	anim_player.animation_finished.connect(func(anim_name: String):
-		if anim_name == "attack": pause_anim = false
-		elif anim_name == "wall_jump": pause_anim = false
+		match anim_name:
+			"attack": pause_anim = false
+			"wall_jump": pause_anim = false
+			_: return
 	)
 
 	hurtbox.hurt.connect(func(other_hitbox: Hitbox):
-		print_debug("[Player] Hurt by ", other_hitbox)
+		state = STATE.HURT
+
+		var x_dir = sign(other_hitbox.global_position.direction_to(global_position).x)
+		if x_dir == 0: x_dir = -1 
+		velocity.x = x_dir * max_speed
+		_jump(0.5)
+
+		stats.health -= other_hitbox.damage
+
+		shaker.shake(2.0, 0.3)
 	)
 
 func _physics_process(delta: float) -> void:
@@ -100,11 +120,17 @@ func _physics_process(delta: float) -> void:
 
 			# Check if the player is no longer on climable surface / or jump is pressed tranisisiton to different state
 
+		STATE.HURT:
+			move_and_slide()
+			_apply_friction(delta)
+			_apply_gravity(delta)
+			# AnimationPlayer should reset state to STATE.MOVE
+
 	_animations(state)
 
 #region Movement Functions
-func _jump():
-	velocity.y = jump_vel
+func _jump(jump_modifier: float = 1.0):
+	velocity.y = jump_vel * jump_modifier
 
 func _accelerate_h(h_dir: float, delta: float) -> void:
 	var acceleration_amount = acceleration
@@ -164,3 +190,6 @@ func _animations(state: STATE = STATE.MOVE):
 				anim_player.pause()
 			else: 
 				anim_player.play("climb")
+		
+		STATE.HURT:
+			anim_player.play("hurt")
