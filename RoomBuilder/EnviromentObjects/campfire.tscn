@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://b7k7b0sn6fbjf"]
 
-[ext_resource type="PackedScene" uid="uid://c1xgl6hkoecg5" path="res://Components/interact_component.tscn" id="1_fo6yx"]
+[ext_resource type="PackedScene" uid="uid://c1xgl6hkoecg5" path="res://Components/Interaction/interact_component.tscn" id="1_fo6yx"]
 [ext_resource type="Script" uid="uid://bwj7uo8471fqo" path="res://RoomBuilder/EnviromentObjects/campfire.gd" id="1_vw86d"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_i2315"]

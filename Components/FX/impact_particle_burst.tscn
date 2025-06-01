@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dc1c3ms21lmgf"]
 
-[ext_resource type="Script" uid="uid://mycq10rxc3dq" path="res://Components/Particles/particle_burst.gd" id="1_3thkf"]
+[ext_resource type="Script" uid="uid://mycq10rxc3dq" path="res://Components/FX/particle_burst.gd" id="1_3thkf"]
 [ext_resource type="Texture2D" uid="uid://js7pi2r3u5ik" path="res://Assets/Particles/impact_effect.png" id="1_k5ial"]
 
 [sub_resource type="Gradient" id="Gradient_cj47t"]

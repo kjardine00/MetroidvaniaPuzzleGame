@@ -7,6 +7,7 @@ Implement LadderClimbing
 
 REFACTOR LATER
 - combine functions of collectable objs ? Maybe that doesn't matter
+- the player script to decouple responsibilities Also don't have too just a maybe
 
 
 Player Character Features
