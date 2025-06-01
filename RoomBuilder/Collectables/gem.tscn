@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://beoj3baqv5t54"]
+
+[ext_resource type="Script" uid="uid://ccfy0nkmb73q1" path="res://gem.gd" id="1_w1cae"]
+[ext_resource type="Texture2D" uid="uid://c8otbdlxxvftt" path="res://Assets/items.png" id="2_gkdab"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0xpk"]
+radius = 5.0
+
+[node name="Gem" type="CharacterBody2D" node_paths=PackedStringArray("collection_area")]
+collision_layer = 32
+script = ExtResource("1_w1cae")
+collection_area = NodePath("CollectionArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gkdab")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_f0xpk")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollectiionCollision" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_f0xpk")

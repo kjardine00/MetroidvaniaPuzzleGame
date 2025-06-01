@@ -1,12 +1,21 @@
-[gd_scene load_steps=23 format=4 uid="uid://c5lrrvyo1lhho"]
+[gd_scene load_steps=25 format=4 uid="uid://c5lrrvyo1lhho"]
 
-[ext_resource type="Script" uid="uid://dy08p5p1h8by" path="res://Player/Player_new/player2.gd" id="1_44p7a"]
-[ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/hitbox.gd" id="2_j3dwa"]
-[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://stats.gd" id="2_u6k6r"]
-[ext_resource type="Script" uid="uid://c64hk3run8l8b" path="res://Components/hurtbox.gd" id="3_i70iu"]
+[ext_resource type="Script" uid="uid://dy08p5p1h8by" path="res://Player/_Player/player2.gd" id="1_44p7a"]
+[ext_resource type="Script" uid="uid://bia8xplpy8dhl" path="res://inventory.gd" id="2_dotu7"]
+[ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/Collisions/hitbox.gd" id="2_j3dwa"]
+[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Components/stats.gd" id="2_u6k6r"]
+[ext_resource type="Script" uid="uid://c64hk3run8l8b" path="res://Components/Collisions/hurtbox.gd" id="3_i70iu"]
+
+[sub_resource type="Resource" id="Resource_ri1wx"]
+script = ExtResource("2_dotu7")
+coins = 0
+keys = 0
+metadata/_custom_type_script = "uid://bia8xplpy8dhl"
 
 [sub_resource type="Resource" id="Resource_5thd0"]
+resource_local_to_scene = true
 script = ExtResource("2_u6k6r")
+max_health = 10
 health = 10.0
 metadata/_custom_type_script = "uid://dtvpenjhn13ue"
 
@@ -308,6 +317,7 @@ anim_player = NodePath("AnimationPlayer")
 wall_raycast_upper = NodePath("Anchor/RayCast2DUpper")
 wall_raycast_lower = NodePath("Anchor/RayCast2DLower")
 hurtbox = NodePath("Anchor/Hurtbox")
+inv = SubResource("Resource_ri1wx")
 stats = SubResource("Resource_5thd0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -378,3 +388,5 @@ metadata/_custom_type_script = "uid://c64hk3run8l8b"
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_i70iu")
 debug_color = Color(0.896585, 0.000198106, 0.774644, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]

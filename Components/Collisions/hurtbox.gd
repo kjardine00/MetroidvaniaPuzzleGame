@@ -10,10 +10,10 @@ class_name Hurtbox extends Area2D
 
 signal hurt(other_hitbox: Hitbox)
 
-func _ready() -> void:
-    area_entered.connect(func(area: Area2D):
-        print_debug("[Hurtbox] This hurtbox was hit by ", area)
-    )
+# func _ready() -> void:
+#     area_entered.connect(func(area: Area2D):
+#         print_debug("[Hurtbox] This hurtbox was hit by ", area)
+#     )
 
 func take_hit(hitbox: Hitbox) -> void:
     if is_invincible: return

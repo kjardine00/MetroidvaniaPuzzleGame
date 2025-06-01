@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InputHandler="*res://Global/input_handler.gd"
+InputHandler="*res://z.Depreciated/input_handler.gd"
 Global="*res://Global/global.gd"
 
 [display]
@@ -89,6 +89,7 @@ attack={
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Player_Hurtbox"
 2d_physics/layer_5="Enemy_Hurtbox"
+2d_physics/layer_6="Inv_Items"
 
 [rendering]
 

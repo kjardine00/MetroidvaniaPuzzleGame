@@ -1,3 +1,5 @@
 extends Node
 
-var TILE_SIZE: int = 8
+const TILE_SIZE: int = 8
+
+var player_inv : Inventory

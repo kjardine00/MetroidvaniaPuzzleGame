@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Player
 
 @export_category("Connections")
 @export var anim_player: AnimationPlayer

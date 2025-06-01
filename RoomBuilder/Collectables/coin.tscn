@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs21f61s1je23"]
+
+[ext_resource type="Script" uid="uid://dc3egkqqs86jt" path="res://RoomBuilder/EnviromentObjects/coin.gd" id="1_vt6ey"]
+[ext_resource type="Texture2D" uid="uid://c8otbdlxxvftt" path="res://Assets/items.png" id="2_68lv0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f0xpk"]
+radius = 5.0
+
+[node name="Coin" type="CharacterBody2D" node_paths=PackedStringArray("collection_area")]
+collision_layer = 32
+script = ExtResource("1_vt6ey")
+collection_area = NodePath("CollectionArea")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_68lv0")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_f0xpk")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollectiionCollision" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_f0xpk")

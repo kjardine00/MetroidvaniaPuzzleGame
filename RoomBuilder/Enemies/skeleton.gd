@@ -1,7 +1,7 @@
 extends Node2D
 
-const PARTICLE_BURST_EFFECT: PackedScene = preload("res://splatter_particle_burst.tscn")
-const IMPACT_PARTICLE_EFFECT: PackedScene = preload("res://impact_particle_burst.tscn")
+const PARTICLE_BURST_EFFECT: PackedScene = preload("res://Components/Particles/splatter_particle_burst.tscn")
+const IMPACT_PARTICLE_EFFECT: PackedScene = preload("res://Components/Particles/impact_particle_burst.tscn")
 
 @export var sprite: Sprite2D
 @export var hurtbox: Hurtbox

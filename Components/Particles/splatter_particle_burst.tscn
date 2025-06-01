@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdcww254602ik"]
 
 [ext_resource type="Texture2D" uid="uid://cp6uyncct6ytx" path="res://Assets/Particles/CircleParticle-16.png" id="1_bd6vl"]
-[ext_resource type="Script" uid="uid://mycq10rxc3dq" path="res://particle_burst.gd" id="2_671xx"]
+[ext_resource type="Script" uid="uid://mycq10rxc3dq" path="res://Components/Particles/particle_burst.gd" id="2_671xx"]
 
 [sub_resource type="Curve" id="Curve_6r0tt"]
 _data = [Vector2(0, 0.600272), 0.0, 0.0, 0, 0, Vector2(1, 0.287211), 0.0, 0.0, 0, 0]

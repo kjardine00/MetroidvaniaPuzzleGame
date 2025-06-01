@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 @export var state : STATE = STATE.MOVE
@@ -9,6 +9,8 @@ enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 @export var wall_raycast_upper: RayCast2D
 @export var wall_raycast_lower: RayCast2D
 @export var hurtbox: Hurtbox
+@export var camera: Camera2D
+@export var inv: Inventory
 
 @export var stats: Stats:
 	set(value):
@@ -41,6 +43,11 @@ var pause_anim: bool = false
 @onready var shaker := Shaker.new(sprite)
 
 func _ready() -> void:
+	stats.no_health.connect(func():
+		queue_free()
+		camera.reparent(get_tree().current_scene)
+	)
+
 	anim_player.animation_finished.connect(func(anim_name: String):
 		match anim_name:
 			"attack": pause_anim = false
@@ -134,7 +141,7 @@ func _jump(jump_modifier: float = 1.0):
 
 func _accelerate_h(h_dir: float, delta: float) -> void:
 	var acceleration_amount = acceleration
-	if not is_on_floor(): acceleration_amount = air_acceleration
+	# if not is_on_floor(): acceleration_amount = air_acceleration
 
 	velocity.x = move_toward(velocity.x, max_speed * h_dir, acceleration_amount * delta * abs(h_dir))
 
@@ -142,7 +149,7 @@ func _apply_friction(delta: float) -> void:
 	var friction_amount = friction
 	if not is_on_floor(): friction_amount = air_friction
 
-	if is_on_floor() and abs(velocity.x) > 0.01:
+	if abs(velocity.x) > 0.01:
 		velocity.x = move_toward(velocity.x, 0, friction_amount * delta)
 
 func _apply_gravity(delta: float) -> void:
@@ -165,8 +172,8 @@ func _check_wall_latch() -> bool:
 		not anim_player.current_animation == "attack"
 	)
 
-func _animations(state: STATE = STATE.MOVE):
-	match state:
+func _animations(current_state: STATE = STATE.MOVE):
+	match current_state:
 		STATE.MOVE:
 			if pause_anim: return
 			# inAir animations
