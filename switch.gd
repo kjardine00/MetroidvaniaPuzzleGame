@@ -35,14 +35,16 @@ func update_sprite() -> void:
 func _on_interact_action(_actor: Player) -> void:
 	match state: 
 		STATE.LEFT:
+			prev_state = STATE.LEFT
 			state = STATE.MIDDLE
-			prev_state = state
 		STATE.RIGHT:
+			prev_state = STATE.RIGHT
 			state = STATE.MIDDLE
-			prev_state = state
 		STATE.MIDDLE:
 			if prev_state == STATE.LEFT:
 				state = STATE.RIGHT
 			elif prev_state == STATE.RIGHT:
 				state = STATE.LEFT
-			prev_state = state
+			prev_state = STATE.MIDDLE
+
+	

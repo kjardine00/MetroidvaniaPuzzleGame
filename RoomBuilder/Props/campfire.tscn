@@ -103,3 +103,4 @@ autoplay = "unlit"
 speed_scale = 0.75
 
 [node name="InteractComp" parent="." instance=ExtResource("2_vw86d")]
+position = Vector2(0, -4)

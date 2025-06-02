@@ -311,6 +311,7 @@ height = 8.0
 
 [node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("anchor", "sprite", "anim_player", "wall_raycast_upper", "wall_raycast_lower", "hurtbox", "camera", "interact_area") groups=["player"]]
 collision_layer = 2
+collision_mask = 129
 script = ExtResource("1_44p7a")
 anchor = NodePath("Anchor")
 sprite = NodePath("Anchor/Sprite2D")
@@ -327,8 +328,10 @@ stats = SubResource("Resource_5thd0")
 libraries = {
 &"": SubResource("AnimationLibrary_porx7")
 }
+autoplay = "idle"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_lkh77")
 
@@ -340,7 +343,6 @@ texture_filter = 1
 texture = SubResource("PortableCompressedTexture2D_lkh77")
 hframes = 6
 vframes = 6
-frame = 29
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -371,6 +373,7 @@ position = Vector2(1, 3)
 target_position = Vector2(2, 0)
 
 [node name="Hitbox" type="Area2D" parent="Anchor"]
+visible = false
 position = Vector2(0, 4)
 collision_layer = 0
 collision_mask = 16
@@ -381,6 +384,7 @@ metadata/_custom_type_script = "uid://dlcmveqh1q4d6"
 position = Vector2(2, 0)
 
 [node name="Hurtbox" type="Area2D" parent="Anchor"]
+visible = false
 position = Vector2(0, 4)
 collision_layer = 8
 collision_mask = 0
@@ -393,6 +397,7 @@ shape = SubResource("CapsuleShape2D_i70iu")
 debug_color = Color(0.896585, 0.000198106, 0.774644, 0.42)
 
 [node name="InteractionManager" parent="Anchor" instance=ExtResource("6_ri1wx")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

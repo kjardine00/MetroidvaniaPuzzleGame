@@ -16,3 +16,4 @@ region_enabled = true
 region_rect = Rect2(0, 0, 8, 8)
 
 [node name="InteractComp" parent="." instance=ExtResource("3_85d7q")]
+position = Vector2(0, -4)

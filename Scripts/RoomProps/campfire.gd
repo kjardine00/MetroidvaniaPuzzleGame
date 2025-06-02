@@ -10,7 +10,7 @@ enum STATE { UNLIT, LIT, BURNING }
 @export var state: STATE :
 	set(value):
 		state = value
-		print_debug("[Campfire] State: ", STATE.keys()[state])
+		# print_debug("[Campfire] State: ", STATE.keys()[state])
 		update_animation()
 
 @export var interact_comp: InteractComponent

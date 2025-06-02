@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b52lf45f4f5hn"
+path="res://.godot/imported/LadderTileSet.aseprite-c3c54386623269d1efcbf7091e9eda39.res"
+
+[deps]
+
+source_file="res://Assets/Tiles/LadderTileSet.aseprite"
+dest_files=["res://.godot/imported/LadderTileSet.aseprite-c3c54386623269d1efcbf7091e9eda39.res"]
+
+[params]
+

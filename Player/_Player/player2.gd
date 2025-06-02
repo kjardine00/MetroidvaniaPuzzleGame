@@ -40,6 +40,7 @@ var coyote_time := 0.0
 #endregion
 
 var pause_anim: bool = false
+var can_climb: bool = false
 
 @onready var shaker := Shaker.new(sprite)
 
@@ -102,6 +103,15 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 				state = STATE.ON_WALL
 
+			if _check_climable_surface():
+				if is_on_floor():
+					if Input.is_action_just_pressed("move_up"):
+						velocity = Vector2.ZERO
+						state = STATE.CLIMB
+				else:
+					velocity = Vector2.ZERO
+					state = STATE.CLIMB
+
 			if Input.is_action_just_pressed("interact"):
 				interact_area.interact(self)
 			
@@ -129,7 +139,11 @@ func _physics_process(delta: float) -> void:
 			var y_input = Input.get_axis("move_up", "move_down")
 			velocity.y = y_input * max_speed * 0.8
 
-			# Check if the player is no longer on climable surface / or jump is pressed tranisisiton to different state
+			if not _check_climable_surface():
+				state = STATE.MOVE
+
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
+				_jump()
 
 		STATE.HURT:
 			move_and_slide()
@@ -175,6 +189,11 @@ func _check_wall_latch() -> bool:
 		not is_on_floor() and 
 		not anim_player.current_animation == "attack"
 	)
+
+func _check_climable_surface() -> bool:
+	if can_climb:
+		return true
+	return false
 
 func _animations(current_state: STATE = STATE.MOVE):
 	match current_state:

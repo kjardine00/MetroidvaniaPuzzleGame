@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx6v7q18yo63h"]
+
+[ext_resource type="Script" uid="uid://cpunqdpueau5r" path="res://Scripts/RoomProps/MovementStuffs/climable_area.gd" id="1_unpsq"]
+
+[node name="ClimableArea" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_unpsq")
