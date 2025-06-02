@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=4 uid="uid://b7k7b0sn6fbjf"]
 
-[ext_resource type="PackedScene" uid="uid://c1xgl6hkoecg5" path="res://Components/Interaction/interact_component.tscn" id="1_fo6yx"]
+[ext_resource type="PackedScene" uid="uid://c1xgl6hkoecg5" path="res://z.Depreciated/interact_component.tscn" id="1_fo6yx"]
 [ext_resource type="Script" uid="uid://bwj7uo8471fqo" path="res://RoomBuilder/EnviromentObjects/campfire.gd" id="1_vw86d"]
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_i2315"]
@@ -34,7 +34,7 @@ interact_component = NodePath("InteractComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -4)
+position = Vector2(0, -8)
 texture = SubResource("PortableCompressedTexture2D_i2315")
 hframes = 3
 vframes = 3
@@ -65,3 +65,4 @@ autoplay = "default"
 speed_scale = 0.75
 
 [node name="InteractComponent" parent="." instance=ExtResource("1_fo6yx")]
+position = Vector2(0, -4)

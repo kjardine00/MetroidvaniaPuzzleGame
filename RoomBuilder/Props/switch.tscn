@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://djndcis7tlpag"]
+
+[ext_resource type="Script" uid="uid://bslny5m6vrnuo" path="res://switch.gd" id="1_85d7q"]
+[ext_resource type="Texture2D" uid="uid://dokjhsxebcqj7" path="res://Assets/RoomProps/lever.png" id="2_os713"]
+[ext_resource type="PackedScene" uid="uid://c5b11oiw0njdd" path="res://Components/Interaction/interact_comp.tscn" id="3_85d7q"]
+
+[node name="Switch" type="Node2D" node_paths=PackedStringArray("sprite", "interact_comp")]
+script = ExtResource("1_85d7q")
+sprite = NodePath("Sprite2D")
+interact_comp = NodePath("InteractComp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_os713")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="InteractComp" parent="." instance=ExtResource("3_85d7q")]

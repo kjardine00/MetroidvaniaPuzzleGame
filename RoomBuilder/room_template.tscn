@@ -1,14 +1,12 @@
-[gd_scene load_steps=13 format=4 uid="uid://d1w3hur6dcvfx"]
+[gd_scene load_steps=11 format=4 uid="uid://d1w3hur6dcvfx"]
 
 [ext_resource type="Script" uid="uid://wqb6is7o2bfh" path="res://RoomBuilder/room_template.gd" id="1_q8qo0"]
 [ext_resource type="Texture2D" uid="uid://8bq1vtxor17d" path="res://Assets/Tiles/Background_Tile.png" id="1_qrvls"]
 [ext_resource type="TileSet" uid="uid://d3xr2k0asqm76" path="res://Assets/Tiles/Tilesets/cave_tileset.tres" id="2_2q2q1"]
 [ext_resource type="PackedScene" uid="uid://c5lrrvyo1lhho" path="res://Player/_Player/player_2.tscn" id="4_lkh77"]
 [ext_resource type="PackedScene" uid="uid://dc3gyxttf4dsa" path="res://RoomBuilder/Enemies/skeleton.tscn" id="4_q8qo0"]
-[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Components/stats.gd" id="5_cif4p"]
-[ext_resource type="PackedScene" uid="uid://b7k7b0sn6fbjf" path="res://RoomBuilder/EnviromentObjects/campfire.tscn" id="6_v4ttu"]
-[ext_resource type="PackedScene" uid="uid://coumo7hfvuk6k" path="res://RoomBuilder/Collectables/heart.tscn" id="8_dh8px"]
-[ext_resource type="PackedScene" uid="uid://beoj3baqv5t54" path="res://RoomBuilder/Collectables/gem.tscn" id="9_f5wyf"]
+[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Resources/stats.gd" id="5_cif4p"]
+[ext_resource type="PackedScene" uid="uid://djndcis7tlpag" path="res://RoomBuilder/Props/switch.tscn" id="8_dh8px"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q2q1"]
 texture = ExtResource("1_qrvls")
@@ -46,11 +44,5 @@ stats = SubResource("Resource_dh8px")
 position = Vector2(133, 104)
 scale = Vector2(-1, 1)
 
-[node name="Campfire" parent="." instance=ExtResource("6_v4ttu")]
-position = Vector2(111, 100)
-
-[node name="Heart" parent="." instance=ExtResource("8_dh8px")]
-position = Vector2(44, 55)
-
-[node name="Gem" parent="." instance=ExtResource("9_f5wyf")]
-position = Vector2(62, 91)
+[node name="Switch" parent="." instance=ExtResource("8_dh8px")]
+position = Vector2(73, 104)

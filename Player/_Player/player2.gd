@@ -10,8 +10,9 @@ enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 @export var wall_raycast_lower: RayCast2D
 @export var hurtbox: Hurtbox
 @export var camera: Camera2D
-@export var inv: Inventory
+@export var interact_area: InteractionManager
 
+@export var inv: Inventory
 @export var stats: Stats:
 	set(value):
 		stats = value
@@ -100,6 +101,9 @@ func _physics_process(delta: float) -> void:
 			if _check_wall_latch():
 				velocity.y = 0
 				state = STATE.ON_WALL
+
+			if Input.is_action_just_pressed("interact"):
+				interact_area.interact(self)
 			
 		STATE.ON_WALL:
 			var wall_normal = get_wall_normal()			

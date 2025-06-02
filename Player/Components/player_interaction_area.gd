@@ -1,5 +1,4 @@
 extends Area2D
-class_name PlayerInteractionArea
 
 var selected_interactable: InteractComponent
 var nearby_interactables: Array[InteractComponent]
@@ -7,9 +6,9 @@ var player: Player
 
 func _ready() -> void:
 	player = get_owner() as Player
-	if not player:
-		push_error("PlayerInteractionArea must be owned by a Player")
-		return
+
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 	
 ## The player interacts with the obj on press of the interact button
 func interact(player_character: Player):

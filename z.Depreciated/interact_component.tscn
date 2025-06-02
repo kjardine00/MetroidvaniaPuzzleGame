@@ -1,19 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1xgl6hkoecg5"]
 
-[ext_resource type="Script" uid="uid://cnmmq4fxekmj8" path="res://Components/Interaction/interact_component.gd" id="1_cgump"]
+[ext_resource type="Script" uid="uid://cny2kdp8hgxin" path="res://Components/Interaction/interact_comp.gd" id="1_cqx0i"]
 [ext_resource type="Texture2D" uid="uid://6pgtfleu05il" path="res://Assets/PromptLabel/PromptLabel_F.png" id="2_jusnl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgump"]
 radius = 16.0
 
-[node name="InteractComponent" type="Area2D" node_paths=PackedStringArray("sprite_2d")]
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("1_cgump")
-sprite_2d = NodePath("Sprite2D")
+[node name="InteractComponent" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_cqx0i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_cgump")
 debug_color = Color(0.692017, 0.285713, 1, 0.42)
 

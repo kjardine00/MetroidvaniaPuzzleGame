@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bxxge2l4hxgrk" path="res://RoomBuilder/Enemies/skeleton.gd" id="1_c8y8m"]
 [ext_resource type="Script" uid="uid://c64hk3run8l8b" path="res://Components/Collisions/hurtbox.gd" id="1_w5erh"]
 [ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/Collisions/hitbox.gd" id="2_c8y8m"]
-[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Components/stats.gd" id="2_ggwlw"]
+[ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Resources/stats.gd" id="2_ggwlw"]
 [ext_resource type="Material" uid="uid://du0acguelibr3" path="res://RoomBuilder/Enemies/fx_material.tres" id="3_odsce"]
 
 [sub_resource type="Resource" id="Resource_odsce"]

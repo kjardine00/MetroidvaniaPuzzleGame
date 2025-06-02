@@ -1,5 +1,4 @@
 extends Area2D
-class_name InteractComponent
 
 signal interact
 signal stop_interact
@@ -15,6 +14,7 @@ var remove_after_interact : bool = false
 
 
 func _ready() -> void:
+    return
     if sprite_2d:
         sprite_2d.visible = false
         sprite_2d.position.y = -prompt_v_offset
