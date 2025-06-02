@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs21f61s1je23"]
 
-[ext_resource type="Script" uid="uid://dc3egkqqs86jt" path="res://RoomBuilder/EnviromentObjects/coin.gd" id="1_vt6ey"]
+[ext_resource type="Script" uid="uid://dc3egkqqs86jt" path="res://Scripts/PickUps/coin.gd" id="1_vt6ey"]
 [ext_resource type="Texture2D" uid="uid://c8otbdlxxvftt" path="res://Assets/items.png" id="2_68lv0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f0xpk"]

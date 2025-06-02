@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=4 uid="uid://b7k7b0sn6fbjf"]
+
+[ext_resource type="Script" uid="uid://bwj7uo8471fqo" path="res://Scripts/RoomProps/campfire.gd" id="1_vw86d"]
+[ext_resource type="PackedScene" uid="uid://c5b11oiw0njdd" path="res://Components/Interaction/interact_comp.tscn" id="2_vw86d"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_vw86d"]
+_data = PackedByteArray("AAADAAUAAAABAAAAIAAAADAAAADoAAAAUklGRuAAAABXRUJQVlA4TNQAAAAvH8ALEEdgEACSHGLLtV4mgwEWMROAjCp6aesTwWdFpqhtG6gFWEBDvd+9SfMfAPjtZhxd77DUhfeTBE5r21ajmww9O6h5NBZADXABWEPsl69vCkdH9N+B2zaOpO3Kljs9A824HIW2x6YNHFve6NACNhflr0nSvQ4v3ethq/x8/XnNJ2/j+6/7tPP3PQpaKI1A2iO4sHqfA3LijDTWU+buqX7T9vyhleKlue/nfWnu+JK6Z4jOOhMrmALrGZMcGYFMZZ3aAQalySLezgpqXnT3Sc7ufw==")
+size_override = Vector2(32, 48)
+
+[sub_resource type="Animation" id="Animation_dd81s"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s610u"]
+resource_name = "burning"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 5, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_g0ou8"]
+resource_name = "lit"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vw86d"]
+_data = {
+&"burning": SubResource("Animation_s610u"),
+&"lit": SubResource("Animation_g0ou8"),
+&"unlit": SubResource("Animation_dd81s")
+}
+
+[node name="Campfire" type="Node2D" node_paths=PackedStringArray("interact_comp", "anim_player")]
+script = ExtResource("1_vw86d")
+interact_comp = NodePath("InteractComp")
+anim_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -8)
+texture = SubResource("PortableCompressedTexture2D_vw86d")
+hframes = 4
+vframes = 3
+frame = 1
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/RoomProps/campfire_animations.aseprite",
+"source_uid": 5929343475822366364
+}
+metadata/_aseprite_wizard_source_file_hash_ = "bb528a0303790be01a477b20336b7abd"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vw86d")
+}
+autoplay = "unlit"
+speed_scale = 0.75
+
+[node name="InteractComp" parent="." instance=ExtResource("2_vw86d")]

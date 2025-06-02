@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5lrrvyo1lhho" path="res://Player/_Player/player_2.tscn" id="4_lkh77"]
 [ext_resource type="PackedScene" uid="uid://dc3gyxttf4dsa" path="res://RoomBuilder/Enemies/skeleton.tscn" id="4_q8qo0"]
 [ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Resources/stats.gd" id="5_cif4p"]
-[ext_resource type="PackedScene" uid="uid://djndcis7tlpag" path="res://RoomBuilder/Props/switch.tscn" id="8_dh8px"]
+[ext_resource type="PackedScene" uid="uid://b7k7b0sn6fbjf" path="res://RoomBuilder/Props/campfire.tscn" id="7_cif4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q2q1"]
 texture = ExtResource("1_qrvls")
@@ -44,5 +44,5 @@ stats = SubResource("Resource_dh8px")
 position = Vector2(133, 104)
 scale = Vector2(-1, 1)
 
-[node name="Switch" parent="." instance=ExtResource("8_dh8px")]
-position = Vector2(73, 104)
+[node name="Campfire" parent="." instance=ExtResource("7_cif4p")]
+position = Vector2(96, 104)
