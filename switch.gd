@@ -14,7 +14,7 @@ var prev_state: STATE
 @export var state: STATE:
 	set(value):
 		state = value
-		print_debug("[Switch] State: ", STATE.keys()[state])
+		# print_debug("[Switch] State: ", STATE.keys()[state])
 		update_sprite()
 
 func _ready() -> void:

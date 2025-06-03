@@ -1,7 +1,10 @@
 class_name Player extends CharacterBody2D
 
 enum STATE { MOVE, CLIMB, ON_WALL, HURT }
-@export var state : STATE = STATE.MOVE
+@export var state : STATE = STATE.MOVE :
+	set(value):
+		state = value
+		print_debug("[Player] State: ", STATE.keys()[state])
 
 @export var anchor: Node2D
 @export var sprite: Sprite2D
@@ -103,14 +106,9 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 				state = STATE.ON_WALL
 
-			if _check_climable_surface():
-				if is_on_floor():
-					if Input.is_action_just_pressed("move_up"):
-						velocity = Vector2.ZERO
-						state = STATE.CLIMB
-				else:
-					velocity = Vector2.ZERO
-					state = STATE.CLIMB
+			if _check_climable_surface() and Input.is_action_pressed("move_up"):
+				velocity = Vector2.ZERO
+				state = STATE.CLIMB
 
 			if Input.is_action_just_pressed("interact"):
 				interact_area.interact(self)
@@ -137,14 +135,19 @@ func _physics_process(delta: float) -> void:
 
 		STATE.CLIMB:
 			var y_input = Input.get_axis("move_up", "move_down")
+			var x_input = Input.get_axis("move_left", "move_right")
 			velocity.y = y_input * max_speed * 0.8
+			velocity.x = x_input * max_speed * 0.5
 
 			if not _check_climable_surface():
 				state = STATE.MOVE
 
-			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
+			if Input.is_action_just_pressed("jump"):
 				_jump()
+				state = STATE.MOVE
 
+			move_and_slide()
+		
 		STATE.HURT:
 			move_and_slide()
 			_apply_friction(delta)
@@ -216,6 +219,9 @@ func _animations(current_state: STATE = STATE.MOVE):
 			anim_player.play("wall_latch")
 
 		STATE.CLIMB:
+			anim_player.play("climb")
+			anim_player.pause()
+
 			if velocity.y == 0:
 				anim_player.pause()
 			else: 

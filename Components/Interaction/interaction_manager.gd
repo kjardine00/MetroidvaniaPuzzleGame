@@ -30,3 +30,5 @@ func _on_area_exited(area: Area2D) -> void:
 func interact(actor: Player) -> void:
     if current_interactable:
         current_interactable.interact(actor)
+        if current_interactable.interact_once:
+            nearby_interactables.erase(current_interactable)

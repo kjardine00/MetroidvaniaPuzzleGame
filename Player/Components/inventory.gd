@@ -3,12 +3,12 @@ class_name Inventory extends Resource
 @export var coins : int = 0 :
     set(value):
         coins = value
-        print_debug("[Inventory] COINS: " + str(coins))
+        # print_debug("[Inventory] COINS: " + str(coins))
 
 @export var keys : int = 0 :
     set(value):
         keys = value
-        print_debug("[Inventory] KEYS: " + str(keys))
+        # print_debug("[Inventory] KEYS: " + str(keys))
 
 #region Coin & Key Functions
 func add_coin(value: int = 1) -> void:
