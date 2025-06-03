@@ -16,7 +16,7 @@ func _on_interact_action(interactor: Player) -> void:
 	interact_comp.queue_free()
 
 func spawn_contents() -> void:
-	print_debug("[Chest] Spawning contents")
+	##REVISIT: I want to spawn the items kinda a bounce out of the chest in a spread.
 	for content in contents:
 		var instance = content.instantiate()
 		instance.global_position = global_position

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqgyxa8mdnf33"]
+
+[ext_resource type="Script" uid="uid://fxeuayotx0ob" path="res://Scripts/RoomProps/sign.gd" id="1_wuacy"]
+[ext_resource type="Texture2D" uid="uid://bbhyy6ffpsitn" path="res://Assets/RoomProps/sign.png" id="2_co4ni"]
+[ext_resource type="PackedScene" uid="uid://c5b11oiw0njdd" path="res://Components/Interaction/interact_comp.tscn" id="3_e12pl"]
+
+[node name="Sign" type="Node2D" node_paths=PackedStringArray("sprite", "interact_comp")]
+script = ExtResource("1_wuacy")
+sprite = NodePath("Sprite2D")
+interact_comp = NodePath("InteractComp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_co4ni")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="InteractComp" parent="." instance=ExtResource("3_e12pl")]
+position = Vector2(0, -4)

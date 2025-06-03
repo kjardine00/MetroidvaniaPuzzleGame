@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://d1w3hur6dcvfx"]
+[gd_scene load_steps=21 format=4 uid="uid://d1w3hur6dcvfx"]
 
 [ext_resource type="Script" uid="uid://wqb6is7o2bfh" path="res://RoomBuilder/room_template.gd" id="1_q8qo0"]
 [ext_resource type="Texture2D" uid="uid://8bq1vtxor17d" path="res://Assets/Tiles/Background_Tile.png" id="1_qrvls"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://coumo7hfvuk6k" path="res://RoomBuilder/Collectables/heart.tscn" id="9_qs5hl"]
 [ext_resource type="PackedScene" uid="uid://phh7e8bjne61" path="res://RoomBuilder/Collectables/key.tscn" id="10_66x8i"]
 [ext_resource type="PackedScene" uid="uid://x2mprgj6rmlr" path="res://RoomBuilder/Props/chest.tscn" id="15_if1qa"]
+[ext_resource type="PackedScene" uid="uid://cqgyxa8mdnf33" path="res://RoomBuilder/Props/sign.tscn" id="16_g1rub"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q2q1"]
 texture = ExtResource("1_qrvls")
@@ -61,10 +62,6 @@ position = Vector2(228, 76)
 shape = SubResource("RectangleShape2D_if1qa")
 debug_color = Color(0, 0.622052, 0.549286, 0.42)
 
-[node name="Player2" parent="." instance=ExtResource("4_lkh77")]
-position = Vector2(241, 47)
-stats = SubResource("Resource_dh8px")
-
 [node name="Coin" parent="." instance=ExtResource("7_vcggs")]
 position = Vector2(64, 72)
 
@@ -89,3 +86,14 @@ position = Vector2(32, 104)
 [node name="Chest" parent="." instance=ExtResource("15_if1qa")]
 position = Vector2(258, 48)
 contents = Array[PackedScene]([])
+
+[node name="Sign" parent="." instance=ExtResource("16_g1rub")]
+position = Vector2(284, 48)
+
+[node name="Sign2" parent="." instance=ExtResource("16_g1rub")]
+position = Vector2(298, 48)
+direction = 1
+
+[node name="Player2" parent="." instance=ExtResource("4_lkh77")]
+position = Vector2(241, 47)
+stats = SubResource("Resource_dh8px")
