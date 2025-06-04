@@ -97,7 +97,6 @@ func _physics_process(delta: float) -> void:
 
 			var was_on_floor = is_on_floor()
 
-			move_and_slide()
 
 			if was_on_floor and not is_on_floor() and velocity.y >= 0:
 					coyote_time = 0.2
@@ -105,6 +104,13 @@ func _physics_process(delta: float) -> void:
 			if _check_wall_latch():
 				velocity.y = 0
 				state = STATE.ON_WALL
+
+			if Input.is_action_pressed("move_down"):
+				set_collision_mask_value(9, false)
+			else: 
+				set_collision_mask_value(9, true)
+
+			move_and_slide()
 
 			if _check_climable_surface() and Input.is_action_pressed("move_up"):
 				velocity = Vector2.ZERO

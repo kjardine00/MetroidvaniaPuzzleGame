@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=4 uid="uid://6pwb7mqr0308"]
+
+[ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/Collisions/hitbox.gd" id="1_6px1r"]
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_6px1r"]
+_data = PackedByteArray("AAADAAUAAAABAAAAHgAAAB4AAADOAAAAUklGRsYAAABXRUJQVlA4TLkAAAAvHUAHECegqG0jNlVY/a0bBNm2udFMYBZnOGG2cW46I9jrZG7+A+D/2jDVwEHbSJKUrmkAs4egNUvgBfDyJ7VzvadDENH/CeCH+5ep53rs7gJ2h/FBd2crAbCvNGAngJ0NBbgXSfhOabBTJhTsU4wRUIpkBpNUEQQVmFBYhYlmFSbFByAEA93KU8ZTNnSCbvCf/mLfJ6WA1M1WyPpOQwm2QJHwskr6NlEijKRCFUtAs5oSL1vUHNibNAA=")
+size_override = Vector2(30, 30)
+
+[sub_resource type="Animation" id="Animation_o8sod"]
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vls6c"]
+_data = {
+&"default": SubResource("Animation_o8sod")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6px1r"]
+radius = 6.0
+
+[node name="SpinningSpikeTrap" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("PortableCompressedTexture2D_6px1r")
+hframes = 2
+vframes = 2
+frame = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"embed_tex": true,
+"i_mode": 0,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/RoomProps/spinning_spike_trap.aseprite",
+"source_uid": 5592562646134266851
+}
+metadata/_aseprite_wizard_source_file_hash_ = "5b8fb11eb143f29ba0135fec4265bb7f"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vls6c")
+}
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_6px1r")
+metadata/_custom_type_script = "uid://dlcmveqh1q4d6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_6px1r")
+debug_color = Color(0.989731, 0, 0.286961, 0.42)

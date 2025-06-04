@@ -5,11 +5,13 @@ STOP BEING SUPER VERBOSE FOR SAKE OF OPTIMIZATION, IF IT IS CODE IT REALLY DOESN
 ================ TODO ================
 Sounds?
 
+ORGANIZE Assets Folder
+
 REFACTOR LATER
 - combine functions of collectable objs ? Maybe that doesn't matter
 - the player script to decouple responsibilities Also don't have too just a maybe
-    - a Velocity Component
-    - maybe try the callable state machine, idk if I really need it through it seems to be fine so far with out it
+	- a Velocity Component
+	- maybe try the callable state machine, idk if I really need it through it seems to be fine so far with out it
 
 
 Player Character Features

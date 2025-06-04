@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://dh4d8o1qt5er4"
+path="res://.godot/imported/UI_bar_border.aseprite-24bdd1e0312ac44134f18d1cf4402fcd.res"
+
+[deps]
+
+source_file="res://Assets/RoomProps/UI_bar_border.aseprite"
+dest_files=["res://.godot/imported/UI_bar_border.aseprite-24bdd1e0312ac44134f18d1cf4402fcd.res"]
+
+[params]
+

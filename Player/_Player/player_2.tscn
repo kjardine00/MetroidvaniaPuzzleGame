@@ -311,7 +311,7 @@ height = 8.0
 
 [node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("anchor", "sprite", "anim_player", "wall_raycast_upper", "wall_raycast_lower", "hurtbox", "camera", "interact_area") groups=["player"]]
 collision_layer = 2
-collision_mask = 129
+collision_mask = 385
 script = ExtResource("1_44p7a")
 anchor = NodePath("Anchor")
 sprite = NodePath("Anchor/Sprite2D")

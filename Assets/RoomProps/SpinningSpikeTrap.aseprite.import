@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://c51nts478no4a"
+path="res://.godot/imported/SpinningSpikeTrap.aseprite-48c82d5a23b91ee3183ba72a7b8d5884.res"
+
+[deps]
+
+source_file="res://Assets/RoomProps/SpinningSpikeTrap.aseprite"
+dest_files=["res://.godot/imported/SpinningSpikeTrap.aseprite-48c82d5a23b91ee3183ba72a7b8d5884.res"]
+
+[params]
+
