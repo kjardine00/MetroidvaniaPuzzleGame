@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export_category("Connections")
 @export var anim_player: AnimationPlayer
 @export var movement_handler: MovementHandler
-@export var interact_area: PlayerInteractionArea
 @export var state_machine: StateMachine
 
 @export var sprite: Sprite2D

@@ -6,6 +6,7 @@ STOP BEING SUPER VERBOSE FOR SAKE OF OPTIMIZATION, IF IT IS CODE IT REALLY DOESN
 Sounds?
 
 ORGANIZE Assets Folder
+- Combine All the elements that are Tile Placed in one tilemaplayer
 
 REFACTOR LATER
 - combine functions of collectable objs ? Maybe that doesn't matter
@@ -25,4 +26,4 @@ Skeleton Features
 - Figure out how to do pathfinding
 
 Signs
-- I need to put in the dialogue manager so I can give signs text to display
+- I need to put in the dialog manager so I can give signs text to display
