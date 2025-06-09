@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://depryfwi3hoh7"]
+
+[ext_resource type="Script" uid="uid://8jnwob8vnjko" path="res://Scripts/Dialog/dialogue_box.gd" id="1_diy2i"]
+[ext_resource type="Texture2D" uid="uid://c6umdg2fnubjv" path="res://Assets/UI/UI_Pop_Up.png" id="2_6co6m"]
+[ext_resource type="Theme" uid="uid://c1na8k0wp2es" path="res://UI/base_theme.tres" id="3_6co6m"]
+
+[node name="DialogueBox" type="MarginContainer" node_paths=PackedStringArray("dialog_label", "timer")]
+offset_right = 40.0
+offset_bottom = 26.0
+size_flags_horizontal = 4
+script = ExtResource("1_diy2i")
+dialog_label = NodePath("MarginContainer/Label")
+timer = NodePath("Timer")
+amount_to_offset_above_character = 12
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_6co6m")
+region_rect = Rect2(14, 14, 20, 24)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("3_6co6m")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]

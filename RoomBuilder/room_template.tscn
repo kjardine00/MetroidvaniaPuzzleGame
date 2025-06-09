@@ -91,12 +91,14 @@ position = Vector2(32, 104)
 position = Vector2(205, 104)
 contents = Array[PackedScene]([])
 
-[node name="Sign" parent="." instance=ExtResource("16_g1rub")]
+[node name="LSign" parent="." instance=ExtResource("16_g1rub")]
 position = Vector2(258, 48)
+sign_text = Array[String](["Hello! This is the left sign"])
 
-[node name="Sign2" parent="." instance=ExtResource("16_g1rub")]
+[node name="RSign" parent="." instance=ExtResource("16_g1rub")]
 position = Vector2(278, 48)
 direction = 1
+sign_text = Array[String](["This is the Right Sign"])
 
 [node name="Player2" parent="." instance=ExtResource("4_lkh77")]
 position = Vector2(241, 47)

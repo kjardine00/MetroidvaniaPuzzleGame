@@ -10,3 +10,7 @@ func interact(actor: Player) -> void:
 
 func stop_interacting(actor: Player) -> void:
     left_interact_area.emit(actor)
+
+func _process(delta: float) -> void:
+    if Input.is_action_just_pressed("debug_input"):
+        interact_action.emit("DEBUG")

@@ -8,6 +8,7 @@
 script = ExtResource("1_wuacy")
 sprite = NodePath("Sprite2D")
 interact_comp = NodePath("InteractComp")
+sign_text = Array[String](["\"Hello this is the signs text"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
@@ -17,3 +18,6 @@ region_rect = Rect2(0, 0, 8, 8)
 
 [node name="InteractComp" parent="." instance=ExtResource("3_e12pl")]
 position = Vector2(0, -4)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)
