@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bn2mbiew06x57"]
+
+[ext_resource type="PackedScene" uid="uid://ckrws7nf5vh7v" path="res://projectile.tscn" id="1_ndvo1"]
+[ext_resource type="Script" uid="uid://bkt355haf216p" path="res://item.gd" id="2_p4d1q"]
+
+[resource]
+script = ExtResource("2_p4d1q")
+name = "Axe"
+projectile = ExtResource("1_ndvo1")
+type = "Arc"
+damage = 1.0
+cooldown = 0.5
+metadata/_custom_type_script = "uid://bkt355haf216p"

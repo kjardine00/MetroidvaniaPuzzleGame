@@ -1,16 +1,19 @@
-[gd_scene load_steps=26 format=4 uid="uid://c5lrrvyo1lhho"]
+[gd_scene load_steps=28 format=4 uid="uid://c5lrrvyo1lhho"]
 
 [ext_resource type="Script" uid="uid://dy08p5p1h8by" path="res://Player/_Player/player2.gd" id="1_44p7a"]
+[ext_resource type="Resource" uid="uid://bn2mbiew06x57" path="res://axe.tres" id="2_6bjwg"]
 [ext_resource type="Script" uid="uid://bia8xplpy8dhl" path="res://Player/Components/inventory.gd" id="2_dotu7"]
 [ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/Collisions/hitbox.gd" id="2_j3dwa"]
 [ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Resources/stats.gd" id="2_u6k6r"]
 [ext_resource type="Script" uid="uid://c64hk3run8l8b" path="res://Components/Collisions/hurtbox.gd" id="3_i70iu"]
 [ext_resource type="PackedScene" uid="uid://bl2dqn5m1mk7m" path="res://Components/Interaction/interaction_manager.tscn" id="6_ri1wx"]
+[ext_resource type="PackedScene" uid="uid://o2ys843bub5f" path="res://Player/Components/attack_component.tscn" id="7_n1kk0"]
 
 [sub_resource type="Resource" id="Resource_ri1wx"]
 script = ExtResource("2_dotu7")
 coins = 0
 keys = 0
+active_item = ExtResource("2_6bjwg")
 metadata/_custom_type_script = "uid://bia8xplpy8dhl"
 
 [sub_resource type="Resource" id="Resource_5thd0"]
@@ -309,7 +312,7 @@ size_override = Vector2(96, 96)
 radius = 1.0
 height = 8.0
 
-[node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("anchor", "sprite", "anim_player", "wall_raycast_upper", "wall_raycast_lower", "hurtbox", "camera", "interact_area") groups=["player"]]
+[node name="Player2" type="CharacterBody2D" node_paths=PackedStringArray("anchor", "sprite", "anim_player", "wall_raycast_upper", "wall_raycast_lower", "hurtbox", "camera", "interact_area", "attack_comp") groups=["player"]]
 collision_layer = 2
 collision_mask = 385
 script = ExtResource("1_44p7a")
@@ -321,6 +324,7 @@ wall_raycast_lower = NodePath("Anchor/RayCast2DLower")
 hurtbox = NodePath("Anchor/Hurtbox")
 camera = NodePath("Camera2D")
 interact_area = NodePath("Anchor/InteractionManager")
+attack_comp = NodePath("AttackComponent")
 inv = SubResource("Resource_ri1wx")
 stats = SubResource("Resource_5thd0")
 
@@ -400,3 +404,6 @@ debug_color = Color(0.896585, 0.000198106, 0.774644, 0.42)
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AttackComponent" parent="." instance=ExtResource("7_n1kk0")]
+position = Vector2(4, -4)

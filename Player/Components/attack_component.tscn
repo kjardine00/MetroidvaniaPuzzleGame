@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://o2ys843bub5f"]
+
+[ext_resource type="Script" uid="uid://b4o7bsylttgxx" path="res://Player/_Player/attack_component.gd" id="1_abty0"]
+[ext_resource type="PackedScene" uid="uid://betu2t7r3ndvd" path="res://line_2d.tscn" id="2_plqf4"]
+
+[node name="AttackComponent" type="Node2D" node_paths=PackedStringArray("trajectory_line")]
+script = ExtResource("1_abty0")
+trajectory_line = NodePath("Line2D")
+
+[node name="Line2D" parent="." instance=ExtResource("2_plqf4")]

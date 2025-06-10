@@ -18,6 +18,3 @@ region_rect = Rect2(0, 0, 8, 8)
 
 [node name="InteractComp" parent="." instance=ExtResource("3_e12pl")]
 position = Vector2(0, -4)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://betu2t7r3ndvd"]
+
+[ext_resource type="Script" uid="uid://ruf8esw0gveh" path="res://line_2d.gd" id="1_2jggx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kkek2"]
+radius = 4.0
+
+[node name="Line2D" type="Line2D" node_paths=PackedStringArray("collision_test")]
+width = 2.0
+script = ExtResource("1_2jggx")
+collision_test = NodePath("CharacterBody2D")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_kkek2")

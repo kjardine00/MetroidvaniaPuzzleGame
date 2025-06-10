@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d1w3hur6dcvfx"]
+[gd_scene load_steps=24 format=4 uid="uid://d1w3hur6dcvfx"]
 
 [ext_resource type="Script" uid="uid://wqb6is7o2bfh" path="res://RoomBuilder/room_template.gd" id="1_q8qo0"]
 [ext_resource type="Texture2D" uid="uid://8bq1vtxor17d" path="res://Assets/Tiles/Background_Tile.png" id="1_qrvls"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://x2mprgj6rmlr" path="res://RoomBuilder/Props/chest.tscn" id="15_if1qa"]
 [ext_resource type="PackedScene" uid="uid://cqgyxa8mdnf33" path="res://RoomBuilder/Props/sign.tscn" id="16_g1rub"]
 [ext_resource type="PackedScene" uid="uid://6pwb7mqr0308" path="res://RoomBuilder/Props/spinning_spike_trap.tscn" id="17_porx7"]
+[ext_resource type="PackedScene" uid="uid://dpxf7ewefdol5" path="res://RoomBuilder/Equipment/axe.tscn" id="20_png4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2q2q1"]
 texture = ExtResource("1_qrvls")
@@ -89,7 +90,7 @@ position = Vector2(32, 104)
 
 [node name="Chest" parent="." instance=ExtResource("15_if1qa")]
 position = Vector2(205, 104)
-contents = Array[PackedScene]([])
+contents = Array[PackedScene]([ExtResource("7_vcggs"), ExtResource("7_vcggs")])
 
 [node name="LSign" parent="." instance=ExtResource("16_g1rub")]
 position = Vector2(258, 48)
@@ -101,8 +102,11 @@ direction = 1
 sign_text = Array[String](["This is the Right Sign"])
 
 [node name="Player2" parent="." instance=ExtResource("4_lkh77")]
-position = Vector2(241, 47)
+position = Vector2(323, 47)
 stats = SubResource("Resource_dh8px")
 
 [node name="SpinningSpikeTrap" parent="." instance=ExtResource("17_porx7")]
 position = Vector2(304, 23)
+
+[node name="Axe" parent="." instance=ExtResource("20_png4m")]
+position = Vector2(332, 76)

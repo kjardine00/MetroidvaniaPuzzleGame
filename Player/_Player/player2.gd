@@ -6,6 +6,7 @@ enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 		state = value
 		print_debug("[Player] State: ", STATE.keys()[state])
 
+#region Connections
 @export var anchor: Node2D
 @export var sprite: Sprite2D
 @export var anim_player: AnimationPlayer
@@ -14,14 +15,19 @@ enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 @export var hurtbox: Hurtbox
 @export var camera: Camera2D
 @export var interact_area: InteractionManager
+@export var attack_comp: AttackComp
+#endregion
 
+#region Resources
 @export var inv: Inventory
 @export var stats: Stats:
 	set(value):
 		stats = value
 		if value is not Stats: return
 		stats = stats.duplicate()
+#endregion
 
+#region Velocity Variables
 @export_category("Movement Properties")
 @export var max_speed := 75
 @export var acceleration := 10000
@@ -29,7 +35,7 @@ enum STATE { MOVE, CLIMB, ON_WALL, HURT }
 @export var friction := 10000
 @export var air_friction := 500
 
-#region Gravity Calculations
+@export_category("Gravity Properties")
 @export var jump_height := 3.0
 @export var jump_time_to_peak := 0.5
 @export var jump_time_to_fall := 0.4
@@ -52,14 +58,12 @@ func _ready() -> void:
 		queue_free()
 		camera.reparent(get_tree().current_scene)
 	)
-
 	anim_player.animation_finished.connect(func(anim_name: String):
 		match anim_name:
 			"attack": pause_anim = false
 			"wall_jump": pause_anim = false
 			_: return
 	)
-
 	hurtbox.hurt.connect(func(other_hitbox: Hitbox):
 		state = STATE.HURT
 
@@ -86,8 +90,9 @@ func _physics_process(delta: float) -> void:
 			_apply_gravity(delta)
 
 			if Input.is_action_just_pressed("attack"):
-				pause_anim = true
-				anim_player.play("attack")
+				attack_comp.attack()
+				# pause_anim = true
+				# anim_player.play("attack")
 
 			if x_input == 0:
 				_apply_friction(delta)
