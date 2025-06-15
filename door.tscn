@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://caytxwlmo6dfw"]
+
+[ext_resource type="Script" uid="uid://cdy7lninu3fhj" path="res://door.gd" id="1_0phs7"]
+[ext_resource type="Texture2D" uid="uid://ft47mnwt0fxe" path="res://Assets/RoomProps/doors.png" id="2_50cdl"]
+[ext_resource type="PackedScene" uid="uid://c5b11oiw0njdd" path="res://Components/Interaction/interact_comp.tscn" id="3_y5njw"]
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("interaction_comp")]
+script = ExtResource("1_0phs7")
+is_locked = true
+interaction_comp = NodePath("InteractComp")
+
+[node name="Door Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_50cdl")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="InteractComp" parent="." instance=ExtResource("3_y5njw")]
+position = Vector2(0, -4)

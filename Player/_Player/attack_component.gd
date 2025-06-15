@@ -1,6 +1,7 @@
 class_name AttackComp extends Node2D
 
 var player : Player
+@export var debug_line := false
 @export var trajectory_line: Line2D
 
 func _ready() -> void: 
@@ -28,7 +29,8 @@ func _process(delta: float) -> void:
 		projectile_speed -= 10 * delta
 
 	# projectile_dir = projectile_dir.normalized()
-	trajectory_line.update_trajectory(projectile_dir, projectile_speed, delta)
+	if debug_line:
+		trajectory_line.update_trajectory(projectile_dir, projectile_speed, delta)
 		
 func attack() -> void:
 	## TODO: Remove this because there should be the default weapon and never a null weapon option

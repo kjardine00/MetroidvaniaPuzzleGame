@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b8n0c16uskt2p"
+path="res://.godot/imported/wall_torch_variants.aseprite-47e55a4b90ce1709a3a78f09ce54a994.res"
+
+[deps]
+
+source_file="res://Assets/Decorations(AsepriteRaw)/wall_torch_variants.aseprite"
+dest_files=["res://.godot/imported/wall_torch_variants.aseprite-47e55a4b90ce1709a3a78f09ce54a994.res"]
+
+[params]
+

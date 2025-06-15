@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://vl8odbalbcbr"
+path="res://.godot/imported/emitted_light.aseprite-1716238ee8364849f22d2f5fb85ee796.res"
+
+[deps]
+
+source_file="res://Assets/Decorations(AsepriteRaw)/emitted_light.aseprite"
+dest_files=["res://.godot/imported/emitted_light.aseprite-1716238ee8364849f22d2f5fb85ee796.res"]
+
+[params]
+

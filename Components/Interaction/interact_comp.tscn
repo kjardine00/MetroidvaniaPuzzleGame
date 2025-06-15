@@ -1,13 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5b11oiw0njdd"]
+[gd_scene load_steps=9 format=3 uid="uid://c5b11oiw0njdd"]
 
 [ext_resource type="Script" uid="uid://cny2kdp8hgxin" path="res://Components/Interaction/interact_comp.gd" id="1_xgx6v"]
+[ext_resource type="Texture2D" uid="uid://kims6egto3d5" path="res://Assets/UI/interact_icon.png" id="2_r0hfs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r88my"]
 radius = 8.0
 
-[node name="InteractComp" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0hfs"]
+atlas = ExtResource("2_r0hfs")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldmnu"]
+atlas = ExtResource("2_r0hfs")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f73vs"]
+atlas = ExtResource("2_r0hfs")
+region = Rect2(0, 7, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dphbh"]
+atlas = ExtResource("2_r0hfs")
+region = Rect2(7, 7, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f73vs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0hfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldmnu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f73vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dphbh")
+}],
+"loop": true,
+"name": &"locked",
+"speed": 2.0
+}]
+
+[node name="InteractComp" type="Area2D" node_paths=PackedStringArray("interact_icon")]
 script = ExtResource("1_xgx6v")
+interact_icon = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r88my")
 debug_color = Color(0.727303, 0.239132, 1, 0.42)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_f73vs")
+frame_progress = 0.983703

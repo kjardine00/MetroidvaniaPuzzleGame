@@ -1,7 +1,7 @@
 [gd_scene load_steps=32 format=4 uid="uid://b5cpnd4mal020"]
 
 [ext_resource type="Script" uid="uid://dkuxmr83t1hus" path="res://z.Depreciated/player.gd" id="1_l8h54"]
-[ext_resource type="PackedScene" uid="uid://ddsu8inkvbht6" path="res://Player/Components/player_interaction_area.tscn" id="2_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://ddsu8inkvbht6" path="res://z.Depreciated/player_interaction_area.tscn" id="2_4ntmi"]
 [ext_resource type="Script" uid="uid://q758pyi3hhop" path="res://z.Depreciated/movement_handler.gd" id="2_btcbx"]
 [ext_resource type="Script" uid="uid://c84oxa6quk77w" path="res://z.Depreciated/animation_player.gd" id="3_lfmf2"]
 [ext_resource type="Script" uid="uid://c5hnrm8ishgoe" path="res://z.Depreciated/StateMachine/state_machine.gd" id="4_gwnis"]

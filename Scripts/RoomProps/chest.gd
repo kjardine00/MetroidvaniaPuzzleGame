@@ -1,11 +1,14 @@
 extends Node2D
 
+@export var is_locked := false
+
 @export var anim_player : AnimationPlayer
 @export var interact_comp : InteractComponent
 @export var contents : Array[PackedScene]
 
 func _ready() -> void:
 	anim_player.play("chest_closed")
+	interact_comp.is_locked = is_locked
 	interact_comp.interact_action.connect(_on_interact_action)
 	interact_comp.interact_once = true
 

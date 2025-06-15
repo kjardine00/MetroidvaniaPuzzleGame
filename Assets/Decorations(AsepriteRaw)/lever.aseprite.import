@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://3v8ih3urnqpt"
+path="res://.godot/imported/lever.aseprite-0382994c9ec09803b381447b185fe63e.res"
+
+[deps]
+
+source_file="res://Assets/Decorations(AsepriteRaw)/lever.aseprite"
+dest_files=["res://.godot/imported/lever.aseprite-0382994c9ec09803b381447b185fe63e.res"]
+
+[params]
+

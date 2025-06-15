@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d3xr2k0asqm76"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://d3xr2k0asqm76"]
 
 [ext_resource type="Texture2D" uid="uid://ck75h25xbxag4" path="res://Assets/Tiles/Cave_Tileset.png" id="1_qip2f"]
+[ext_resource type="Texture2D" uid="uid://cb1rumncmrl46" path="res://Assets/Tiles/Crystal_Cave_Tileset.png" id="2_gye3n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gye3n"]
 texture = ExtResource("1_qip2f")
@@ -153,6 +154,58 @@ texture_region_size = Vector2i(8, 8)
 10:1/0 = 0
 11:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fukw5"]
+texture = ExtResource("2_gye3n")
+texture_region_size = Vector2i(8, 8)
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+15:1/0 = 0
+19:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+7:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+15:2/0 = 0
+19:2/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+7:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+15:3/0 = 0
+19:3/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+0:5/0 = 0
+
 [resource]
 tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
@@ -163,3 +216,4 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_gye3n")
+sources/1 = SubResource("TileSetAtlasSource_fukw5")

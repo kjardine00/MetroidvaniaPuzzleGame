@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c1na8k0wp2es"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c1na8k0wp2es"]
 
+[ext_resource type="FontFile" uid="uid://ds4knisxgsdrj" path="res://Assets/UI/8-bit-fortress.ttf" id="1_l30ol"]
 [ext_resource type="FontFile" uid="uid://boagc4ecpqe3w" path="res://Assets/UI/Retro Gaming.ttf" id="1_senvt"]
 
 [resource]
 default_font = ExtResource("1_senvt")
 default_font_size = 24
-Label/colors/font_color = Color(0, 0, 0, 1)
-Label/font_sizes/font_size = 14
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/font_sizes/font_size = 7
+Label/fonts/font = ExtResource("1_l30ol")

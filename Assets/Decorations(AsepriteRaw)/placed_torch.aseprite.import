@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b6iyc26fxwb4p"
+path="res://.godot/imported/placed_torch.aseprite-097b4d370b97caaad4d9c85e1cc0ab72.res"
+
+[deps]
+
+source_file="res://Assets/Decorations(AsepriteRaw)/placed_torch.aseprite"
+dest_files=["res://.godot/imported/placed_torch.aseprite-097b4d370b97caaad4d9c85e1cc0ab72.res"]
+
+[params]
+

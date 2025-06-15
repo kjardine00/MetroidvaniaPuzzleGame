@@ -8,21 +8,6 @@
 _data = PackedByteArray("AAADAAUAAAABAAAAEAAAABAAAACCAAAAUklGRnoAAABXRUJQVlA4TG4AAAAvD8ADECegoG0bFhfG3VHQNgocOycv4As1AQiwMetyK2b+AwD+z8WztgOGkCS7mrr3CY7gB4FLAN9f60WEiP6rbduGgaee3MGEv6p1/QLreoM74Qv4xOTGZIh0MqRCtetnf5dJpsnXIzLpwNnfCg==")
 size_override = Vector2(16, 16)
 
-[sub_resource type="Animation" id="Animation_s4sf2"]
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_cmjdf"]
 length = 0.1
 loop_mode = 1
@@ -37,6 +22,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s4sf2"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ukdoh"]
