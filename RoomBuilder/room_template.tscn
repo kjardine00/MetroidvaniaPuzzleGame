@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://wqb6is7o2bfh" path="res://RoomBuilder/room_template.gd" id="1_q8qo0"]
 [ext_resource type="Texture2D" uid="uid://8bq1vtxor17d" path="res://Assets/Tiles/Background_Tile.png" id="1_qrvls"]
-[ext_resource type="PackedScene" uid="uid://coqu4lvoi45cv" path="res://RoomBuilder/TileMapLayers/cave_tile_map_layer.tscn" id="3_porx7"]
+[ext_resource type="PackedScene" uid="uid://coqu4lvoi45cv" path="res://RoomBuilder/TileMapLayers/foreground_tile_map_layer.tscn" id="3_porx7"]
 [ext_resource type="PackedScene" uid="uid://cpyq20ewi0mi7" path="res://RoomBuilder/MovementAreas/ladder.tscn" id="4_66x8i"]
 [ext_resource type="PackedScene" uid="uid://c5lrrvyo1lhho" path="res://Player/_Player/player_2.tscn" id="4_lkh77"]
 [ext_resource type="PackedScene" uid="uid://dc3gyxttf4dsa" path="res://RoomBuilder/Enemies/skeleton.tscn" id="4_q8qo0"]

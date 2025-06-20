@@ -1,7 +1,6 @@
-[gd_scene load_steps=28 format=4 uid="uid://c5lrrvyo1lhho"]
+[gd_scene load_steps=27 format=4 uid="uid://c5lrrvyo1lhho"]
 
 [ext_resource type="Script" uid="uid://dy08p5p1h8by" path="res://Player/_Player/player2.gd" id="1_44p7a"]
-[ext_resource type="Resource" uid="uid://bn2mbiew06x57" path="res://axe.tres" id="2_6bjwg"]
 [ext_resource type="Script" uid="uid://bia8xplpy8dhl" path="res://Player/Components/inventory.gd" id="2_dotu7"]
 [ext_resource type="Script" uid="uid://dlcmveqh1q4d6" path="res://Components/Collisions/hitbox.gd" id="2_j3dwa"]
 [ext_resource type="Script" uid="uid://dtvpenjhn13ue" path="res://Resources/stats.gd" id="2_u6k6r"]
@@ -13,7 +12,6 @@
 script = ExtResource("2_dotu7")
 coins = 0
 keys = 0
-active_item = ExtResource("2_6bjwg")
 metadata/_custom_type_script = "uid://bia8xplpy8dhl"
 
 [sub_resource type="Resource" id="Resource_5thd0"]
@@ -155,8 +153,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_cif4p"]
-length = 0.1
-loop_mode = 1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -195,7 +192,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_q8qo0"]
-length = 0.2
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -204,7 +201,7 @@ tracks/0/path = NodePath("Anchor/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
@@ -354,7 +351,6 @@ texture_filter = 1
 texture = SubResource("PortableCompressedTexture2D_6bjwg")
 hframes = 6
 vframes = 6
-frame = 29
 metadata/_aseprite_wizard_interface_config_ = {
 "animation_section": false,
 "layer_section": false,

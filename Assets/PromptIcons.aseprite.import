@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b5m516cbvhrhb"
+path="res://.godot/imported/PromptIcons.aseprite-4a8dfd8702ea1a6e0bbef8c07a5e1094.res"
+
+[deps]
+
+source_file="res://Assets/PromptIcons.aseprite"
+dest_files=["res://.godot/imported/PromptIcons.aseprite-4a8dfd8702ea1a6e0bbef8c07a5e1094.res"]
+
+[params]
+
