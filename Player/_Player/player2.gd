@@ -125,7 +125,7 @@ func _physics_process(delta: float) -> void:
 				interact_area.interact(self)
 			
 		STATE.ON_WALL:
-			var wall_normal = get_wall_normal()			
+			var wall_normal = get_wall_normal()
 			var x_input = Input.get_axis("move_left", "move_right")
 
 			_apply_wall_gravity(delta)
